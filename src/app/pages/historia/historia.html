@@ -1,35 +1,38 @@
-<div class="grid grid-cols-3 gap-4">
-  <div class="border-amber-600 border-2 rounded-xl">
-  <app-card-duenio
-    foto="assets/img/duenio.jpg"
-    nombre="Juan María M. De Leyva"
-    titulo="Perito Judicial tasador de bienes inmuebles"></app-card-duenio>
-</div>
-  <div class="border-amber-600 border-2">
-    <p>
-La historia de Leyva Illescas es la historia de pasión, compromiso y visión. Desde nuestros inicios, nos hemos dedicado a ofrecer soluciones innovadoras que combinan calidad, eficiencia y un profundo respeto por nuestros clientes.
-
-Fundada hace más de [X años] por [Nombre del fundador o fundadores], la empresa nació con un propósito claro: brindar productos y servicios que marcaran la diferencia en el mercado, siempre poniendo a las personas y la excelencia en el centro de nuestro trabajo.
-
-A lo largo de los años, Leyva Illescas ha crecido gracias al esfuerzo constante de un equipo comprometido, la confianza de nuestros clientes y la innovación constante en cada proyecto que emprendemos. Hoy, seguimos expandiéndonos, siempre fieles a nuestros valores de integridad, calidad y cercanía.
-
-Más que una empresa, somos una familia que construye relaciones duraderas con clientes, colaboradores y la comunidad, buscando dejar una huella positiva en todo lo que hacemos.
- </p>
-  </div>
-  <div class="border-amber-600 border-2">
-
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-1  md:grid-cols-2 lg:grid-cols-3">
+  <!-- Primer card -->
+  <div class="md:col-span-2 lg:col-span-1">
     <app-card-duenio
-    foto="assets/img/duenio.jpg"
-    nombre="Beatriz Illescas Martín"
-    titulo="Abogada y Asesora de empresa"></app-card-duenio>
+      foto="assets/img/duenio.jpg"
+      nombre="Juan María M. De Leyva"
+      titulo="Perito Judicial tasador de bienes inmuebles">
+    </app-card-duenio>
   </div>
 
-  <div class="col-span-3 border-amber-600 border-2">
-
-<app-cronologia></app-cronologia>
-
+  <!-- Texto descriptivo -->
+  <div class="border-amber-600 border-2 md:col-span-2 lg:col-span-1">
+    <p>
+      La historia de Leyva Illescas es la historia de pasión, compromiso y visión. Desde nuestros inicios, nos hemos dedicado a ofrecer soluciones innovadoras que combinan calidad, eficiencia y un profundo respeto por nuestros clientes. Fundada hace más de [X años] por [Nombre del fundador o fundadores], la empresa nació con un propósito claro: brindar productos y servicios que marcaran la diferencia en el mercado, siempre poniendo a las personas y la excelencia en el centro de nuestro trabajo. A lo largo de los años, Leyva Illescas ha crecido gracias al esfuerzo constante de un equipo comprometido, la confianza de nuestros clientes y la innovación constante en cada proyecto que emprendemos. Hoy, seguimos expandiéndonos, siempre fieles a nuestros valores de integridad, calidad y cercanía. Más que una empresa, somos una familia que construye relaciones duraderas con clientes, colaboradores y la comunidad, buscando dejar una huella positiva en todo lo que hacemos.
+    </p>
   </div>
 
+  <!-- Segundo card -->
+  <div class="md:col-span-2 lg:col-span-1">
+    <app-card-duenio
+      foto="assets/img/duenio.jpg"
+      nombre="Beatriz Illescas Martín"
+      titulo="Abogada y Asesora de empresa">
+    </app-card-duenio>
+  </div>
+
+  <!-- Cronología -->
+  <div class="border-amber-600 border-2 md:col-span-2 sm:col-span-1 lg:col-span-3  sm:border-blue-600 md:border-yellow-200 lg:border-purple-700">
+    <app-cronologia></app-cronologia>
+  </div>
+
+  <!-- Elementos adicionales -->
   <div class="border-amber-600 border-2">06</div>
-  <div class="col-span-2 border-amber-600 border-2">07</div>
+
+  <div class=" border-amber-600 border-2">07</div>
+  <div class=" border-amber-600 border-2">08</div>
+
 </div>
