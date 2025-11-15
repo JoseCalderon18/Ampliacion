@@ -11,5 +11,7 @@ export class CardDuenio {
   @Input() foto!: string;
   @Input() nombre!: string;
   @Input() titulo!: string;
+  @Input() imgClass!: string;
+
 
 }
