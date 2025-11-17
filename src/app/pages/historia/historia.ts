@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CardDuenio } from '../../Components/card-duenio/card-duenio';
-import { Cronologia } from '../../Components/cronologia/cronologia';
+import { CardDuenio } from '../../components/card-duenio/card-duenio';
+import { Cronologia } from '../../components/cronologia/cronologia';
 @Component({
   selector: 'app-historia',
   imports: [CardDuenio, Cronologia],
