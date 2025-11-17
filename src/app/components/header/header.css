@@ -1,0 +1,80 @@
+/* Header Styles */
+header {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Efectos del link*/
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #2563eb;
+  padding-left: 0.5rem;
+}
+
+/* Active link styling */
+:host ::ng-deep a[routerLinkActive='active'] {
+  color: #000000;
+  font-weight: 700;
+}
+
+/* Desktop auth buttons */
+.auth-btn-login {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.auth-btn-login::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease;
+}
+
+.auth-btn-login:hover::after {
+  width: 100%;
+}
+
+
+/* Mobile menu animations */
+@media (max-width: 1024px) {
+  .mobile-nav-menu {
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile auth buttons */
+  .auth-btn-mobile {
+    transition: all 0.2s ease;
+  }
+
+  .auth-btn-mobile:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Smooth transitions */
+a {
+  transition: all 0.2s ease-in-out;
+}
+
+button {
+  transition: all 0.2s ease-in-out;
+}

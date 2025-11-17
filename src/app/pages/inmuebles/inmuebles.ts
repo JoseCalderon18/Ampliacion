@@ -1,5 +1,6 @@
+import { CardCasa } from "../../components/card-casa/card-casa";
 import { Component } from '@angular/core';
-import { CardCasa } from '../../Components/card-casa/card-casa';
+
 @Component({
   selector: 'app-inmuebles',
   imports: [CardCasa],
