@@ -5,6 +5,8 @@ import { Contacto } from './pages/contacto/contacto';
 import { Postventa } from './pages/postventa/postventa';
 import { Historia } from './pages/historia/historia';
 import { LoginRegistro } from './pages/login-registro/login-registro';
+import { Privacidad } from './pages/privacidad/privacidad'; 
+import { Terminos } from './pages/terminos/terminos';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -13,5 +15,7 @@ export const routes: Routes = [
   { path: 'postventa', component: Postventa },
   { path: 'historia', component: Historia },
   { path: 'login-registro', component: LoginRegistro },
+  { path: 'privacidad', component: Privacidad },
+  { path: 'terminos', component: Terminos },
 ];
 

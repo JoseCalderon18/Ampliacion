@@ -1,37 +1,82 @@
-<section class="flex items-center justify-between py-16 px-6 bg-white-50">
-  <div class="max-w-lg">
-    <h1 class="text-4xl font-bold">Sobre nosotros </h1>
-    <p class="mt-4 text-lg leading-relaxed">
-      Somos una inmobiliaria dedicada a ayudar a las personas a encontrar el hogar que desean, ofreciendo soluciones innovadoras que combinan calidad y eficiencia. Con años de experiencia en el sector y un equipo altamente capacitado, te acompañamos en cada paso de tu viaje inmobiliario.    </p>
-  </div>
-  
-  <div class="w-1/2 pl-8">
-    <img src="assets/img/inicio7.jpeg" alt="Team Photo" class="rounded-lg shadow-lg w-full object-cover">
+<div class="bg-white-50">
+  <section class="flex flex-col lg:flex-row items-center justify-between py-16 px-6 space-y-12 lg:space-y-0 lg:space-x-12 bg-white shadow-md rounded-lg">
+    <div class="max-w-lg text-center lg:text-left">
+      <h1 class="text-4xl font-bold text-gray-800">Sobre nosotros</h1>
+      <p class="mt-4 text-lg leading-relaxed text-gray-600">
+        Somos una inmobiliaria dedicada a ayudar a las personas a encontrar el hogar que desean, ofreciendo soluciones innovadoras que combinan calidad y eficiencia. Con años de experiencia en el sector y un equipo altamente capacitado, te acompañamos en cada paso de tu viaje inmobiliario.
+      </p>
+    </div>
+
+    <div class="w-full lg:w-2/3 max-w-xl mx-auto">
+    <img src="assets/img/inicio7.jpeg" alt="Team Photo" class="rounded-lg shadow-xl w-full object-cover transform hover:scale-105 transition duration-500">
+    </div>
+  </section>
+
+  <section class="flex flex-col-reverse lg:flex-row items-center justify-between py-10 px-6 space-y-12 lg:space-y-0 lg:space-x-12 bg-white">
+    <div class="w-full lg:w-2/3 max-w-xl mx-auto">
+      <img src="assets/img/Foto_Avila_Clientes.png" alt="Team with Clients" class="rounded-lg shadow-xl w-full object-cover transform hover:scale-105 transition duration-500">
+    </div>
+
+    <div class="max-w-lg text-center lg:text-left">
+      <h2 class="text-3xl font-bold text-gray-800">Nuestra misión: Los clientes</h2>
+      <p class="mt-4 text-lg text-gray-600">
+        Nuestra misión es brindar un servicio excepcional a nuestros clientes, asegurándonos de que cada interacción sea positiva y memorable. Nos esforzamos por entender sus necesidades y superar sus expectativas, construyendo relaciones duraderas basadas en la confianza y la satisfacción.
+      </p>
+    </div>
+  </section>
+
+<section class="py-16 px-6 bg-blue-50">
+  <h2 class="text-3xl font-bold text-center text-blue-600">Lo que dicen nuestros clientes</h2>
+
+  <!-- Carrusel de testimonios -->
+  <div class="mt-8 max-w-4xl mx-auto relative">
+    <div class=" relative rounded-lg">
+      <!-- Testimonios -->
+      <div class="flex transition-transform duration-500 ease-in-out">
+        <!-- Mostrar solo el testimonio actual -->
+        <div class="w-full flex-shrink-0 text-center p-6">
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <p class="text-lg text-gray-600 italic">{{ testimonials[currentIndex].text }}</p>
+            <p class="mt-4 font-bold text-gray-800">{{ testimonials[currentIndex].author }}</p>
+          </div>
+        </div>
+      </div>
+      <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full shadow-lg focus:outline-none" 
+        (click)="prevTestimonial()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full shadow-lg focus:outline-none" 
+        (click)="nextTestimonial()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </section>
+   
 
-<section class="flex flex-colms items-center justify-between py-16 px-6 bg-white">
-  <div class="w-1/2 pr-8">
-    <img src="assets/img/Foto_Avila_Clientes.png" alt="Grow Better Team" class="rounded-lg shadow-lg w-full object-cover max-w-full">
-  </div>
 
-  <div class="max-w-lg mx-auto mt-8">
-    <h2 class="text-3xl font-bold">Nuestra misión: Los clientes</h2>
-    <p class="mt-4 ">
-      Nuestra misión es brindar un servicio excepcional a nuestros clientes, asegurándonos de que cada interacción sea positiva y memorable. Nos esforzamos por entender sus necesidades y superar sus expectativas, construyendo relaciones duraderas basadas en la confianza y la satisfacción.
-    </p>
-  </div>
-</section>
+  <section class="py-16 px-6 bg-white">
+    <h2 class="text-3xl font-bold text-center text-gray-800">Preguntas Frecuentes</h2>
+    <div class="mt-8 space-y-4">
+      <details class="bg-gray-50 p-4 rounded-lg shadow-lg">
+        <summary class="text-xl font-semibold text-gray-800">¿Cómo puedo empezar a buscar una propiedad?</summary>
+        <p class="mt-2 text-gray-600">Visita nuestra pagina de inmuebles o contáctanos para más información.</p>
+      </details>
+      <details class="bg-gray-50 p-4 rounded-lg shadow-lg">
+        <summary class="text-xl font-semibold text-gray-800">¿Cómo puedo contactar con nosotros?</summary>
+        <p class="mt-2 text-gray-600">Puedes hacerlo directamente desde nuestra página de contacto o llamarnos al número que aparece en la pestaña de contacto.</p>
+      </details>
+    </div>
+  </section>
 
-<section class="bg-white border-t border-blue-600 py-8 px-6 text-center">
-  <h2 class="text-3xl font-bold text-black mb-4">
-    ¡CONTACTA CON NOSOTROS!
-  </h2>
-  
-  <button 
-    routerLink="/contacto" 
-    routerLinkActive="active" 
-    class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300 shadow-lg mb-6">
-    📞 CONTACTO
-  </button>
-</section>
+  <section class="bg-blue-50 border-t-4 border-blue-600 py-8 px-6 text-center space-y-4">
+    <h2 class="text-3xl font-bold text-blue-600">¡CONTACTA CON NOSOTROS!</h2>
+    <p class="text-lg text-gray-600">¿Tienes preguntas o necesitas más información? ¡Estamos aquí para ayudarte!</p>
+    <a href="contacto" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition duration-300">Ir a la página de contacto</a>
+ 
+  </section>
+</div>
