@@ -2,7 +2,7 @@
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_2fr_1fr] lg:gap-6 pt-15">
 
   <!-- Primer card -->
-  <div class="md:col-span-1 lg:col-span-1 md:order-2 lg:order-1 sm:order-2">
+  <div class="md:col-span-1 lg:col-span-1 md:order-2 lg:order-1 sm:order-2 [@media(max-width:638px)]:order-2">
     <app-card-duenio
       foto="assets/img/duenio.jpg"
       nombre="Juan María M. De Leyva"
@@ -12,7 +12,7 @@
   </div>
 
   <!-- Texto descriptivo -->
-  <div class=" md:col-span-2 lg:col-span-1 p-6 text-xl md:order-1 md:text-xl lg:order-2 sm:order-1 font-serif        max-w-4xl mx-auto px-4 py-12 text-gray-800">
+  <div class=" md:col-span-2 lg:col-span-1 p-6 text-xl md:order-1 md:text-xl lg:order-2 sm:order-1 font-serif    max-w-4xl mx-auto px-4 py-12 text-gray-800 [@media(max-width:638px)]:order-1">
     <p class="mb-6 text-lg leading-relaxed">
     La historia de <span class="font-bold">Leyva Illescas</span> es la historia de <span class="font-bold">pasión, compromiso y visión</span>. Desde nuestros inicios, nos hemos dedicado a ofrecer soluciones innovadoras que combinan <span class="font-bold">calidad, eficiencia</span> y un profundo respeto por nuestros clientes.
   </p>
@@ -31,7 +31,7 @@
   </div>
 
   <!-- Segunda card -->
-  <div class="md:col-span-1 lg:col-span-1 md:order-3 lg:order-3 sm:order-3">
+  <div class="md:col-span-1 lg:col-span-1 md:order-3 lg:order-3 sm:order-3 [@media(max-width:638px)]:order-3">
     <app-card-duenio
       foto="assets/img/duenia.jpg"
       nombre="Beatriz Illescas Martín"
@@ -41,11 +41,11 @@
   </div>
 
   <!-- Cronología -->
-  <div class=" md:col-span-2 sm:col-span-1 lg:col-span-3 md:order-4 sm:order-4 bg-blue-200 mr-30 mb-30 ml-30 rounded-2xl p-10">
+  <div class=" md:col-span-2 sm:col-span-1 lg:col-span-3 md:order-4 sm:order-4 bg-blue-200 mr-30 mb-30 ml-30 rounded-2xl p-10 [@media(max-width:638px)]:order-4">
     <app-cronologia></app-cronologia>
   </div>
 
-  <!-- Elementos adicionales 
+  <!-- Elementos adicionales
   <div class="border-amber-600 border-2 md:order-5">06</div>
   <div class="border-amber-600 border-2 md:order-6">07</div>
   <div class="border-amber-600 border-2 md:order-7">08</div>-->

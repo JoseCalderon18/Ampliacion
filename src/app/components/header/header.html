@@ -35,10 +35,10 @@
 
     <!-- Botones en desktop - al lado derecho -->
     <div class="hidden lg:flex items-center gap-3 ml-auto">
-      <a href="/login" class="auth-btn-login px-4 py-2 text-blue-700 hover:text-blue-800 font-medium text-[15px] transition-colors">
-        Iniciar Sesión
+      <a routerLink="/login-registro" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="auth-btn-login px-4 py-2 text-blue-700 hover:text-blue-800 font-medium text-[15px] transition-colors">
+        Iniciar Sesión/Registro
       </a>
-      <a href="/signup" class="auth-btn-signup px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-[15px] rounded-md transition-colors">
+      <a routerLink="/login-registro" class="auth-btn-signup px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-[15px] rounded-md transition-colors">
         Registrarse
       </a>
     </div>

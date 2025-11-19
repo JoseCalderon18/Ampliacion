@@ -4,6 +4,7 @@ import { Inmuebles } from './pages/inmuebles/inmuebles';
 import { Contacto } from './pages/contacto/contacto';
 import { Postventa } from './pages/postventa/postventa';
 import { Historia } from './pages/historia/historia';
+import { LoginRegistro } from './pages/login-registro/login-registro';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'contacto', component: Contacto },
   { path: 'postventa', component: Postventa },
   { path: 'historia', component: Historia },
+  { path: 'login-registro', component: LoginRegistro },
 ];
 
