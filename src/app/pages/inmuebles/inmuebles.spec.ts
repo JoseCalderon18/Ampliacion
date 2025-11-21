@@ -1,23 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { Inmuebles } from './inmuebles';
+import { CardCasaComponent } from '../../components/card-casa/card-casa';
+import { CasasController } from '../../../controllers/controladorCasas';
+import { Casa } from '../../models/modelCasa';
 
-describe('Inmuebles', () => {
-  let component: Inmuebles;
-  let fixture: ComponentFixture<Inmuebles>;
+@Component({
+  selector: 'app-inmuebles',
+  standalone: true,
+  imports: [
+    CommonModule,        // ⬅ Necesario para *ngFor
+    CardCasaComponent    // ⬅ Necesario para usar <app-card-casa>
+  ],
+  templateUrl: './inmuebles.html',
+  styleUrls: ['./inmuebles.css']
+})
+export class InmueblesComponent implements OnInit {
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Inmuebles]
-    })
-    .compileComponents();
+  casas: Casa[] = [];
 
-    fixture = TestBed.createComponent(Inmuebles);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  constructor(private casasCtrl: CasasController) {}
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  ngOnInit() {
+    this.casas = this.casasCtrl.getCasas();  // ⬅ Obtiene las casas del controlador
+  }
+
+}

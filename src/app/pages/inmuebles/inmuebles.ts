@@ -1,12 +1,28 @@
-import { CardCasa } from "../../components/card-casa/card-casa";
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { CardCasaComponent } from '../../components/card-casa/card-casa';
+import { CasasController } from '../../../controllers/controladorCasas';
+import { Casa } from '../../models/modelCasa';
 
 @Component({
   selector: 'app-inmuebles',
-  imports: [CardCasa],
+  standalone: true,
+  imports: [
+    CommonModule,      // necesario para *ngFor
+    CardCasaComponent  // necesario para <app-card-casa>
+  ],
   templateUrl: './inmuebles.html',
-  styleUrl: './inmuebles.css',
+  styleUrls: ['./inmuebles.css']
 })
-export class Inmuebles {
+export class InmueblesComponent implements OnInit {
+
+  casas: Casa[] = [];
+
+  constructor(private casasCtrl: CasasController) {}
+
+  ngOnInit() {
+    this.casas = this.casasCtrl.getCasas();   // ⬅️ Obtiene la lista de casas
+  }
 
 }
