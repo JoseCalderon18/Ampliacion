@@ -1,28 +1,37 @@
-<div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
+<div class="max-w-sm h-full min-h-[480px] rounded-lg overflow-hidden shadow-lg bg-white flex flex-col">
+
   <!-- Imagen del inmueble -->
   <img class="w-full h-56 object-cover" [src]="foto" alt="Imagen del inmueble">
 
   <!-- Contenido de la card -->
-  <div class="p-6">
+  <div class="p-6 flex flex-col flex-grow">
+
     <!-- Título del inmueble -->
-    <h2 class="text-2xl font-semibold text-gray-800">{{ titulo }}</h2>
+    <h2 class="text-2xl font-semibold text-gray-800">
+      {{ titulo }}
+    </h2>
 
     <!-- Ubicación -->
-    <p class="text-gray-600 mt-2">📍 {{ubicacion}}</p>
+    <p class="text-gray-600 mt-2">
+      📍 {{ ubicacion }}
+    </p>
 
     <!-- Precio -->
     <p class="text-xl font-bold text-blue-600 mt-3">
-      {{precio}}
+      {{ precio }}
     </p>
 
     <!-- Descripción breve -->
-    <p class="text-gray-500 mt-3 text-sm">
-      {{descripcion}}
+    <p class="text-gray-500 mt-3 text-sm flex-grow">
+      {{ descripcion }}
     </p>
 
-    <!-- Botón de acción -->
-    <button (click)="maximizar()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors">
+    <!-- Botón de acción (siempre queda abajo) -->
+    <button 
+      (click)="maximizar()" 
+      class="mt-6 w-full bg-blue-600 hover:bg-blue-700 cursor-pointer text-white py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors">
       Ver detalles
     </button>
+
   </div>
 </div>
