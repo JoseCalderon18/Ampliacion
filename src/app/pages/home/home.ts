@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { CardHome } from '../../components/card-home/card-home';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CardHome],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
