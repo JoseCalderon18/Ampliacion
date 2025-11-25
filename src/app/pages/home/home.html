@@ -36,12 +36,101 @@
   </div>
 </div>
 <app-card-home></app-card-home>
-<div class="bg-[url(assets/img/home/banner.webp)] bg-cover bg-center text-white text-center p-10 md:p-20 rounded-lg mx-10 mb-20">
-  <h3>La belleza no es un lujo.
-Es una necesidad.</h3>
-  <p>
-    Luxuryestate os abrirá las puertas de las residencias más encantadoras del mundo. 
+<div class="bg-[url(/assets/img/home/banner.webp)] h-[24rem] bg-cover bg-center text-white text-center p-10 md:p-20 flex flex-col justify-center items-center">
+  <h3 class="text-2xl md:text-5xl font-serif italic">La belleza no es un lujo. Es una necesidad.</h3>
+  <p class="text-sm mt-4 md:mt-8 w-3/4">
+    Leyva e Illescas,os abrirá las puertas de las residencias más encantadoras del mundo. 
     Villas de lujo, propiedades prestigiosas, residencias de época, castillos, áticos 
     exclusivos y casas rurales.
   </p>
 </div>
+<!--Div adicional-->
+<div class="py-16 px-6 bg-gradient-to-br from-slate-50 to-slate-100">
+  <div class="max-w-7xl mx-auto">
+    <h3 class="text-xl md:text-4xl font-bold text-center text-slate-800 mb-3" data-aos="fade-up">
+      Excelencia en cada detalle
+    </h3>
+    <p class="text-center text-slate-600 text-base mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+      Más de 25 años conectando personas con las propiedades de sus sueños
+    </p>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Servicio 1 -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-200" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center mb-4">
+          <span class="text-3xl">🏰</span>
+        </div>
+        <h4 class="text-xl font-bold text-slate-800 mb-3">Portfolio Exclusivo</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Acceso a las propiedades más prestigiosas y exclusivas de España. 
+          Cada residencia seleccionada con los más altos estándares de calidad.
+        </p>
+      </div>
+
+      <!-- Servicio 2 -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-200" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center mb-4">
+          <span class="text-3xl">✨</span>
+        </div>
+        <h4 class="text-xl font-bold text-slate-800 mb-3">Atención Personalizada</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Un equipo dedicado a comprender tus necesidades y superar tus expectativas. 
+          Acompañamiento profesional en cada paso del proceso.
+        </p>
+      </div>
+
+      <!-- Servicio 3 -->
+      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-200" data-aos="fade-up" data-aos-delay="400">
+        <div class="w-14 h-14 bg-amber-500/10 rounded-full flex items-center justify-center mb-4">
+          <span class="text-3xl">🇪🇸</span>
+        </div>
+        <h4 class="text-xl font-bold text-slate-800 mb-3">Presencia Nacional</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Conocimiento profundo del mercado inmobiliario español. 
+          Conectamos compradores y vendedores en toda España.
+        </p>
+      </div>
+    </div>
+
+    <!-- Estadísticas con animación de contador -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+      <div class="text-center" data-aos="zoom-in" data-aos-delay="500">
+        <div class="text-3xl md:text-4xl font-bold text-orange-600 mb-2" data-aos="fade-up" data-aos-duration="1000">25+</div>
+        <div class="text-slate-600 font-medium text-sm">Años de experiencia</div>
+      </div>
+      <div class="text-center" data-aos="zoom-in" data-aos-delay="600">
+        <div class="text-3xl md:text-4xl font-bold text-orange-600 mb-2" data-aos="fade-up" data-aos-duration="1200">1000+</div>
+        <div class="text-slate-600 font-medium text-sm">Clientes satisfechos</div>
+      </div>
+      <div class="text-center" data-aos="zoom-in" data-aos-delay="700">
+        <div class="text-3xl md:text-4xl font-bold text-orange-600 mb-2" data-aos="fade-up" data-aos-duration="1400">50+</div>
+        <div class="text-slate-600 font-medium text-sm">Ciudades en España</div>
+      </div>
+      <div class="text-center" data-aos="zoom-in" data-aos-delay="800">
+        <div class="text-3xl md:text-4xl font-bold text-orange-600 mb-2" data-aos="fade-up" data-aos-duration="1600">100%</div>
+        <div class="text-slate-600 font-medium text-sm">Compromiso</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="relative h-[24rem] text-white p-10 md:p-20 mb-20 flex flex-col justify-start items-start overflow-hidden">
+  <img 
+    class="absolute inset-0 w-full h-full object-cover z-0" 
+    src="/assets/img/home/oficina.webp" 
+    alt="Imagenes de la oficina">
+  <div class="absolute inset-0 bg-black/40 z-10"></div>
+  <div class="relative z-20">
+    <p class="text-left">Únete a nuestra familia</p>
+    <h4 class="text-left text-3xl font-bold mt-2">Trabaja con nosotros</h4>
+    <p class="text-sm mt-4 md:mt-8 w-full md:w-1/3 text-left">
+      En Leyva e Illescas, nos enorgullecemos de ofrecer un servicio personalizado y 
+      profesional a cada uno de nuestros clientes.
+    </p>
+    <button 
+      routerLink="/contacto"
+      class="cursor-pointer mt-6 px-6 py-3 border-white border-2 font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform duration-200">
+      Contáctanos
+    </button>
+  </div>
+</div>
+
