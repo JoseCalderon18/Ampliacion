@@ -1,7 +1,22 @@
+<!-- Contenedor principal de pantalla completa
+     min-h-screen: altura mínima de viewport (100vh)
+     flex items-center justify-center: flexbox centrado horizontal y vertical
+     bg-gradient-to-br: gradiente diagonal (arriba-izquierda a abajo-derecha)
+     from-slate-900 via-slate-800 to-slate-900: colores de gradiente oscuros
+     p-3 sm:p-4: padding escalable para no ocupar todo el ancho en móvil -->
 <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-3 sm:p-4">
+  <!-- Tarjeta principal con sombra y bordes redondeados
+       w-full: ancho completo
+       max-w-2xl sm:max-w-4xl lg:max-w-6xl: anchos máximos escalables por breakpoint
+       bg-white: fondo blanco
+       rounded-2xl: bordes muy redondeados (radius 16px)
+       shadow-2xl: sombra extra grande
+       overflow-hidden: oculta contenido que sobresale de los bordes -->
   <div class="w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden">
     
-    <!-- Contenedor Principal -->
+    <!-- Contenedor Principal: Layout dividido en 2 paneles
+         flex flex-col lg:flex-row: columna en móvil/tablet, fila en desktop
+         h-auto lg:h-[600px]: altura automática móvil, 600px en desktop (arbitrary value) -->
     <div class="flex flex-col lg:flex-row h-auto lg:h-[600px]">
       
       <!-- Panel Izquierdo - Formularios -->

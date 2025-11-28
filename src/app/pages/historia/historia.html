@@ -1,12 +1,31 @@
+<!-- Contenedor principal de la sección de historia con padding responsive -->
+<!-- px-4 sm:px-6 md:px-8: padding horizontal escalable según breakpoints
+     py-8 md:py-12: padding vertical mayor en desktop -->
 <div class="w-full px-4 sm:px-6 md:px-8 py-8 md:py-12">
+  <!-- Título principal (h1): elemento semántico de máxima importancia SEO -->
+  <!-- font-extrabold: peso de fuente máximo (900)
+       text-3xl sm:text-4xl md:text-5xl lg:text-5xl: tamaño escalable (responsive)
+       font-serif: tipografía serif para elegancia
+       text-center pt-6 sm:pt-10: padding superior responsive
+       mb-12 md:mb-16: margen inferior grande para separación -->
   <h1 class="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-center pt-6 sm:pt-10 font-serif mb-12 md:mb-16">
     NUESTRA HISTORIA
   </h1>
-
+  <!-- Grid layout responsivo con 3 columnas en lg
+       grid-cols-1: 1 columna en móvil
+       md:grid-cols-2: 2 columnas en tablet
+       lg:grid-cols-[1fr_2fr_1fr]: 3 columnas en desktop (1-2-1 proporción)
+       gap-6 sm:gap-8 md:gap-10 lg:gap-6: espaciado entre items escalable -->
   <div class="max-w-7xl mx-auto grid grid-cols-1 gap-6 sm:gap-8 md:gap-10 lg:gap-6 md:grid-cols-2 lg:grid-cols-[1fr_2fr_1fr]">
 
-    <!-- Primera card -->
+    <!-- Primer card -->
     <div class="md:col-span-1 lg:col-span-1 md:order-2 lg:order-1">
+      <!-- Contenedor de la tarjeta del dueño -->
+      <!-- Componente Angular reutilizable que recibe props:
+           - foto: ruta de la imagen
+           - nombre: nombre del dueño
+           - titulo: descripción/profesión
+           - imgClass: clases Tailwind para la imagen (scale-105 zoom al hover) -->
       <app-card-duenio
         foto="assets/img/duenio.jpg"
         nombre="Juan María M. De Leyva"
@@ -15,27 +34,44 @@
       </app-card-duenio>
     </div>
 
-    <!-- Texto descriptivo -->
+    <!-- Texto descriptivo: contenedor central con contenido principal
+         md:col-span-2: ocupa 2 columnas en tablet (todo el ancho)
+         lg:col-span-1: ocupa 1 columna en desktop (centro)
+         p-4 sm:p-6: padding escalable
+         md:order-1 lg:order-2: order-1 en tablet, order-2 en desktop -->
     <div class="md:col-span-2 lg:col-span-1 p-4 sm:p-6 md:order-1 lg:order-2">
+      <!-- Párrafo 1: Introducción con énfasis en valores clave
+           mb-4 sm:mb-6: margen inferior escalable
+           leading-relaxed: line-height aumentado para mejor legibilidad
+           text-gray-800: color oscuro pero no completamente negro para menos tensión visual
+           span.font-bold: resalta palabras clave (negrita) -->
       <p class="mb-4 sm:mb-6 text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
         La historia de <span class="font-bold">Leyva Illescas</span> es la historia de <span class="font-bold">pasión, compromiso y visión</span>. Desde nuestros inicios, nos hemos dedicado a ofrecer soluciones innovadoras que combinan <span class="font-bold">calidad, eficiencia</span> y un profundo respeto por nuestros clientes.
       </p>
 
+      <!-- Párrafo 2: Información sobre la fundación con campos para editar (placeholders) -->
       <p class="mb-4 sm:mb-6 text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
         Fundada hace más de <span class="font-bold">[X años]</span> por <span class="font-bold">[Nombre del fundador o fundadores]</span>, la empresa nació con un propósito claro: brindar <span class="font-bold">productos y servicios que marcaran la diferencia</span> en el mercado, siempre poniendo a las personas y la excelencia en el centro de nuestro trabajo.
       </p>
 
+      <!-- Párrafo 3: Narrativa del crecimiento empresarial -->
       <p class="mb-4 sm:mb-6 text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
         A lo largo de los años, <span class="font-bold">Leyva Illescas</span> ha crecido gracias al esfuerzo constante de un equipo comprometido, la confianza de nuestros clientes y la innovación constante en cada proyecto que emprendemos.
       </p>
 
+      <!-- Párrafo 4 (último): Síntesis de valores y visión futura
+           text sin margen inferior (último elemento) -->
       <p class="text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
         Hoy, seguimos expandiéndonos, siempre fieles a nuestros valores de <span class="font-bold">integridad, calidad y cercanía</span>. Más que una empresa, somos una <span class="font-bold">familia</span> que construye relaciones duraderas con clientes, colaboradores y la comunidad, buscando dejar una <span class="font-bold">huella positiva</span> en todo lo que hacemos.
       </p>
     </div>
 
-    <!-- Segunda card -->
+    <!-- Segunda card: Tarjeta de la segunda dueña (orden visual responsive)
+         md:col-span-1 lg:col-span-1: ocupa 1 columna
+         md:order-3 lg:order-3: posición 3 en ambos breakpoints (derecha) -->
     <div class="md:col-span-1 lg:col-span-1 md:order-3 lg:order-3">
+      <!-- Contenedor de la tarjeta del dueño -->
+      <!-- Componente Angular similar al primero, reutilizable con diferentes props -->
       <app-card-duenio
         foto="assets/img/duenia.jpg"
         nombre="Beatriz Illescas Martín"
@@ -44,8 +80,16 @@
       </app-card-duenio>
     </div>
 
-    <!-- Cronología -->
+    <!-- Cronología: Sección timeline con fondo gradiente
+         md:col-span-2 lg:col-span-3: ocupa todo el ancho en todos los breakpoints
+         md:order-4: último elemento (posición 4)
+         bg-gradient-to-r: gradiente de izquierda a derecha (from-blue-100 to-blue-50)
+         rounded-2xl: bordes muy redondeados (radius grande)
+         p-4 sm:p-6 md:p-10: padding escalable para contenido interior
+         shadow-lg: sombra grande para profundidad (drop shadow) -->
     <div class="md:col-span-2 lg:col-span-3 md:order-4 bg-gradient-to-r from-blue-100 to-blue-50 rounded-2xl p-4 sm:p-6 md:p-10 shadow-lg">
+      <!-- Componente Angular de cronología/timeline
+           Componente personalizado que renderiza hitos históricos -->
       <app-cronologia></app-cronologia>
     </div>
 
