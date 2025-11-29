@@ -36,7 +36,7 @@ Aplicación web moderna desarrollada con Angular para la gestión y visualizaci�
 ## 📦 Instalación
 
 ### Prerrequisitos
-- Node.js (v18 o superior)
+- Node.js (v20.19 o superior, o v22.12+)
 - npm o yarn
 
 ### Pasos de Instalación
@@ -228,6 +228,7 @@ git push -u origin main
 3. **Configuración** (Netlify detectará automáticamente):
    - **Build command**: `npm run build`
    - **Publish directory**: `dist/Ampliacion/browser`
+   - **Node version**: Node 20.19 (configurado en `package.json` y `netlify.toml`)
    - El archivo `netlify.toml` ya está configurado, así que debería detectarlo automáticamente
 
 4. **Despliegue**:
