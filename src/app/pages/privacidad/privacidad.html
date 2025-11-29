@@ -1,86 +1,120 @@
-<div class="min-h-screen bg-gradient-to-b from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 py-12 px-4 sm:px-6">
+<div [ngClass]="{'bg-gradient-to-b from-white to-slate-50': !isDarkMode(), 'bg-gradient-to-b from-slate-800 to-slate-900': isDarkMode()}" class="min-h-screen py-12 px-4 sm:px-6">
   <div class="max-w-4xl mx-auto">
-    <div class="bg-white dark:bg-slate-800/80 dark:backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10 border dark:border-slate-700/50">
-      <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Política de Privacidad</h1>
-      <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">Última actualización: 19 de noviembre de 2025</p>
+    <div [ngClass]="{'bg-white border-slate-200': !isDarkMode(), 'bg-slate-800/80 backdrop-blur-sm border-slate-700/50': isDarkMode()}" class="rounded-2xl shadow-lg p-6 md:p-10 border">
+      <h1 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-3xl md:text-4xl font-bold mb-4">Política de Privacidad</h1>
+      <p [ngClass]="{'text-slate-600': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="text-sm mb-8">Última actualización: 19 de noviembre de 2025</p>
 
-      <div class="prose prose-slate dark:prose-invert max-w-none">
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+      <div [ngClass]="{'prose prose-slate': !isDarkMode(), 'prose prose-slate prose-invert': isDarkMode()}" class="max-w-none">
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           En este sitio web, respetamos tu privacidad y nos comprometemos 
           a proteger tus datos personales. Esta Política de Privacidad explica cómo recopilamos, 
           usamos y protegemos tu información.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">1. Información que recopilamos</h2>
-        <p class="mb-4 text-slate-700 dark:text-slate-300">Podemos recopilar los siguientes tipos de información:</p>
-        <ul class="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">1. Información que recopilamos</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-4">Podemos recopilar los siguientes tipos de información:</p>
+        <ul [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="list-disc pl-6 space-y-2">
           <li><strong>Datos proporcionados voluntariamente:</strong> nombre, correo electrónico, número de teléfono u otra información enviada a través de formularios.</li>
           <li><strong>Datos de navegación:</strong> dirección IP, tipo de navegador, páginas visitadas, tiempo de visita y otros datos recopilados mediante cookies.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">2. Uso de la información</h2>
-        <p class="mb-4 text-slate-700 dark:text-slate-300">Utilizamos la información recopilada para:</p>
-        <ul class="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">2. Uso de la información</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-4">Utilizamos la información recopilada para:</p>
+        <ul [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="list-disc pl-6 space-y-2">
           <li>Responder a consultas y solicitudes.</li>
           <li>Mejorar nuestro Sitio y servicios.</li>
           <li>Enviar comunicaciones relevantes (cuando haya consentimiento previo).</li>
           <li>Garantizar la seguridad del Sitio.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">3. Cookies y tecnologías similares</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">3. Cookies y tecnologías similares</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Utilizamos cookies para mejorar la experiencia del usuario, analizar el tráfico del Sitio 
           y personalizar contenido. Puedes configurar tu navegador para rechazarlas, aunque algunas 
           funciones pueden verse afectadas.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">4. Compartición de la información</h2>
-        <p class="mb-4 text-slate-700 dark:text-slate-300">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">4. Compartición de la información</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-4">
           No vendemos ni compartimos tus datos personales con terceros, excepto en los siguientes casos:
         </p>
-        <ul class="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+        <ul [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="list-disc pl-6 space-y-2">
           <li>Cuando sea necesario para prestar un servicio solicitado.</li>
           <li>Cumplimiento de obligaciones legales.</li>
           <li>Proveedores de servicios que apoyan nuestras operaciones (hosting, analítica, etc.), bajo acuerdos de confidencialidad.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">5. Seguridad de los datos</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">5. Seguridad de los datos</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Implementamos medidas técnicas y organizativas para proteger tus datos contra accesos no 
           autorizados, pérdida o alteración. Sin embargo, ningún sistema es completamente seguro.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">6. Derechos del usuario</h2>
-        <p class="mb-4 text-slate-700 dark:text-slate-300">Dependiendo de tu ubicación, puedes tener derecho a:</p>
-        <ul class="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">6. Derechos del usuario</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-4">Dependiendo de tu ubicación, puedes tener derecho a:</p>
+        <ul [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="list-disc pl-6 space-y-2">
           <li>Acceder a tus datos personales.</li>
           <li>Solicitar la rectificación o eliminación.</li>
           <li>Oponerte o restringir el procesamiento.</li>
           <li>Solicitar la portabilidad.</li>
           <li>Retirar tu consentimiento.</li>
         </ul>
-        <p class="mt-4 text-slate-700 dark:text-slate-300">
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mt-4">
           Para ejercer estos derechos, contáctanos en:  
-          <strong class="text-slate-900 dark:text-white">leyvaeillescas@gmail.com</strong>
+          <strong [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}">leyvaeillescas@gmail.com</strong>
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">7. Enlaces a sitios externos</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">7. Enlaces a sitios externos</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           El Sitio puede contener enlaces a sitios externos. No somos responsables por sus prácticas 
           de privacidad o contenido.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">8. Cambios en esta Política</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">8. Cambios en esta Política</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Nos reservamos el derecho de actualizar esta Política de Privacidad. La versión vigente 
-          siempre estará disponible en esta página.
+          siempre estará disponible en esta página. Cualquier modificación será comunicada a través 
+          del sitio web y entrará en vigor desde su publicación.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">9. Contacto</h2>
-        <p class="text-slate-700 dark:text-slate-300">
-          Si tienes preguntas sobre esta Política de Privacidad, escríbenos a:  
-          <strong class="text-slate-900 dark:text-white">leyvaeillescas@gmail.com</strong>
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">9. Retención de datos</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-4">
+          Conservamos tus datos personales durante el tiempo necesario para cumplir con los fines 
+          para los que fueron recopilados, incluyendo requisitos legales, contables o de informes. 
+          Una vez que ya no sean necesarios, serán eliminados de forma segura.
         </p>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
+          Los datos de navegación y cookies se conservan según su período de expiración, que puede 
+          variar desde sesiones temporales hasta períodos más largos según el tipo de cookie.
+        </p>
+
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">10. Transferencias internacionales</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
+          En caso de que tus datos personales sean transferidos fuera del Espacio Económico Europeo, 
+          nos aseguramos de que existan salvaguardas adecuadas para proteger tu información, 
+          cumpliendo con las normativas de protección de datos aplicables.
+        </p>
+
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">11. Menores de edad</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
+          Este sitio web no está dirigido a menores de 18 años. No recopilamos intencionalmente 
+          información personal de menores. Si descubrimos que hemos recopilado información de un 
+          menor sin el consentimiento de sus padres, tomaremos medidas para eliminar esa información 
+          de nuestros sistemas.
+        </p>
+
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">12. Contacto</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}">
+          Si tienes preguntas sobre esta Política de Privacidad, escríbenos a:  
+          <strong [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}">leyvaeillescas@gmail.com</strong>
+        </p>
+
+        <!-- Información del creador -->
+        <div [ngClass]="{'text-slate-600 border-slate-200': !isDarkMode(), 'text-slate-400 border-slate-700': isDarkMode()}" class="mt-12 pt-8 border-t text-xs text-center">
+          <p class="mb-2">Esta página web ha sido creada y desarrollada por <strong>José Calderón Pérez</strong>.</p>
+          <p class="mb-2">El creador tiene total uso y propiedad de este sitio web y de todo su contenido.</p>
+          <p class="font-semibold">Cualquier uso, reproducción o publicación de este sitio web sin el consentimiento expreso del creador será objeto de acciones legales y demandas correspondientes.</p>
+        </div>
       </div>
     </div>
   </div>

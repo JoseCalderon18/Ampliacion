@@ -1,71 +1,105 @@
-<div class="min-h-screen bg-gradient-to-b from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 py-12 px-4 sm:px-6">
+<div [ngClass]="{'bg-gradient-to-b from-white to-slate-50': !isDarkMode(), 'bg-gradient-to-b from-slate-800 to-slate-900': isDarkMode()}" class="min-h-screen py-12 px-4 sm:px-6">
   <div class="max-w-4xl mx-auto">
-    <div class="bg-white dark:bg-slate-800/80 dark:backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10 border dark:border-slate-700/50">
-      <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Términos y Condiciones</h1>
-      <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">Última actualización: 19 de noviembre de 2025</p>
+    <div [ngClass]="{'bg-white border-slate-200': !isDarkMode(), 'bg-slate-800/80 backdrop-blur-sm border-slate-700/50': isDarkMode()}" class="rounded-2xl shadow-lg p-6 md:p-10 border">
+      <h1 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-3xl md:text-4xl font-bold mb-4">Términos y Condiciones</h1>
+      <p [ngClass]="{'text-slate-600': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="text-sm mb-8">Última actualización: 19 de noviembre de 2025</p>
 
-      <div class="prose prose-slate dark:prose-invert max-w-none">
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+      <div [ngClass]="{'prose prose-slate': !isDarkMode(), 'prose prose-slate prose-invert': isDarkMode()}" class="max-w-none">
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Al acceder y utilizar este sitio web (en adelante, "el Sitio"), aceptas cumplir con los siguientes 
           Términos y Condiciones. Si no estás de acuerdo, por favor deja de usar el Sitio inmediatamente.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">1. Aceptación de los términos</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">1. Aceptación de los términos</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Al utilizar el Sitio, reconoces que has leído, comprendido y aceptas estos Términos. Nos reservamos 
           el derecho de modificarlos en cualquier momento, y la versión vigente será publicada en esta misma página.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">2. Uso permitido</h2>
-        <p class="mb-4 text-slate-700 dark:text-slate-300">El usuario se compromete a:</p>
-        <ul class="list-disc pl-6 space-y-2 text-slate-700 dark:text-slate-300">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">2. Uso permitido</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-4">El usuario se compromete a:</p>
+        <ul [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="list-disc pl-6 space-y-2">
           <li>Utilizar el Sitio solo para fines legales.</li>
           <li>No intentar acceder a áreas privadas, sistemas internos o servicios no públicos.</li>
           <li>No realizar actividades que puedan afectar el funcionamiento del Sitio.</li>
           <li>No distribuir contenido malicioso como virus, malware o spam.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">3. Propiedad intelectual</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">3. Propiedad intelectual</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Todo el contenido del Sitio, incluyendo textos, imágenes, logotipos, gráficos y código, es propiedad 
           del titular del Sitio o cuenta con las licencias correspondientes. Queda prohibida su reproducción, 
           distribución o modificación sin autorización previa por escrito.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">4. Contenido generado por usuarios</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">4. Contenido generado por usuarios</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Si el usuario envía comentarios, sugerencias u otro tipo de contenido, concede al Sitio una licencia 
           no exclusiva, mundial y libre de regalías para utilizar dicho contenido con fines operativos.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">5. Enlaces a terceros</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">5. Enlaces a terceros</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           El Sitio puede contener enlaces externos. No somos responsables del contenido, prácticas o políticas 
           de dichos sitios. El acceso a ellos queda bajo responsabilidad del usuario.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">6. Limitación de responsabilidad</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">6. Limitación de responsabilidad</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           El Sitio se proporciona "tal cual", sin garantías explícitas o implícitas. No garantizamos la 
           disponibilidad continua, ausencia de errores o exactitud del contenido. En ningún caso seremos 
           responsables por daños directos, indirectos o consecuentes derivados del uso del Sitio.
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">7. Privacidad y protección de datos</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed"> 
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">7. Privacidad y protección de datos</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed"> 
           El uso del Sitio está sujeto a nuestra Política de Privacidad, que describe cómo recopilamos, 
-          utilizamos y protegemos los datos personales de los usuarios.
+          utilizamos y protegemos los datos personales de los usuarios. Al utilizar este sitio, aceptas 
+          el procesamiento de tus datos según se describe en dicha política.
         </p>
         
-        <h2 class="text-2xl font-semibold mt-8 mb-4 text-slate-900 dark:text-white">8. Ley aplicable y jurisdicción</h2>
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">8. Modificaciones del servicio</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
+          Nos reservamos el derecho de modificar, suspender o discontinuar cualquier aspecto del Sitio 
+          en cualquier momento, con o sin previo aviso. No seremos responsables ante ti ni ante ningún 
+          tercero por cualquier modificación, suspensión o discontinuación del servicio.
+        </p>
+
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">9. Indemnización</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
+          El usuario acepta indemnizar y eximir de responsabilidad al titular del Sitio, sus afiliados, 
+          directores, empleados y agentes de cualquier reclamo, daño, obligación, pérdida, responsabilidad, 
+          costo o deuda, y gastos (incluyendo honorarios de abogados) que surjan del uso del Sitio o 
+          incumplimiento de estos Términos.
+        </p>
+        
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">10. Rescisión</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
+          Nos reservamos el derecho de terminar o suspender tu acceso al Sitio inmediatamente, sin previo 
+          aviso, por cualquier motivo, incluyendo, sin limitación, si incumples estos Términos. 
+          Tras la rescisión, tu derecho a usar el Sitio cesará inmediatamente.
+        </p>
+        
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">11. Ley aplicable y jurisdicción</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
           Estos Términos se rigen por las leyes del país en el que opera el Sitio. Cualquier disputa será sometida a la 
-          jurisdicción exclusiva de los tribunales competentes de dicha jurisdicción.
+          jurisdicción exclusiva de los tribunales competentes de dicha jurisdicción. Si alguna disposición 
+          de estos Términos se considera inválida o inaplicable, las disposiciones restantes permanecerán en pleno vigor.
         </p>
         
-        <p class="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
-          Si tienes alguna pregunta sobre estos Términos, por favor contáctanos a través de nuestra página de contacto.
+        <h2 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl font-semibold mt-8 mb-4">12. Contacto</h2>
+        <p [ngClass]="{'text-slate-900': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="mb-6 leading-relaxed">
+          Si tienes alguna pregunta sobre estos Términos y Condiciones, por favor contáctanos a través 
+          de nuestra página de contacto o en el correo electrónico: 
+          <strong [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}">leyvaeillescas@gmail.com</strong>
         </p>
+
+        <!-- Información del creador -->
+        <div [ngClass]="{'text-slate-600 border-slate-200': !isDarkMode(), 'text-slate-400 border-slate-700': isDarkMode()}" class="mt-12 pt-8 border-t text-xs text-center">
+          <p class="mb-2">Esta página web ha sido creada y desarrollada por <strong>José Calderón Pérez</strong>.</p>
+          <p class="mb-2">El creador tiene total uso y propiedad de este sitio web y de todo su contenido.</p>
+          <p class="font-semibold">Cualquier uso, reproducción o publicación de este sitio web sin el consentimiento expreso del creador será objeto de acciones legales y demandas correspondientes.</p>
+        </div>
       </div>
     </div>
   </div>

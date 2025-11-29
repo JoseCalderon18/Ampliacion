@@ -6,6 +6,16 @@ import { CasasController } from '../../../controllers/controladorCasas';
 import { ThemeService } from '../../services/theme.service';
 import { Casa } from '../../models/modelCasa';
 
+/**
+ * Componente de página que muestra el catálogo de inmuebles con sistema de filtros avanzados.
+ * Permite filtrar por tipo, provincia, ciudad, precio, habitaciones y baños.
+ * Incluye paginación y vista responsive.
+ * 
+ * @example
+ * ```html
+ * <app-inmuebles></app-inmuebles>
+ * ```
+ */
 @Component({
   selector: 'app-inmuebles',
   standalone: true,
@@ -22,42 +32,142 @@ export class InmueblesComponent implements OnInit {
   private casasCtrl = inject(CasasController);
   isDarkMode = this.themeService.isDarkMode;
   
+  /**
+   * Lista completa de todas las propiedades disponibles.
+   */
   casas: Casa[] = [];
+  
+  /**
+   * Lista de propiedades filtradas según los criterios seleccionados.
+   */
   filteredCasas = signal<Casa[]>([]);
   
   // Filtros
+  /**
+   * Tipos de inmueble seleccionados para filtrar.
+   * @default []
+   */
   selectedTipos = signal<string[]>([]);
+  
+  /**
+   * Provincias seleccionadas para filtrar.
+   * @default []
+   */
   selectedProvincias = signal<string[]>([]);
+  
+  /**
+   * Ciudades seleccionadas para filtrar.
+   * @default []
+   */
   selectedCiudades = signal<string[]>([]);
+  
+  /**
+   * Números de habitaciones seleccionados para filtrar.
+   * @default []
+   */
   selectedHabitaciones = signal<number[]>([]);
+  
+  /**
+   * Números de baños seleccionados para filtrar.
+   * @default []
+   */
   selectedBanos = signal<number[]>([]);
+  
+  /**
+   * Precio mínimo para filtrar.
+   * @default 0
+   */
   precioMin = signal<number>(0);
+  
+  /**
+   * Precio máximo para filtrar.
+   * @default 2000000
+   */
   precioMax = signal<number>(2000000);
   
   // Paginación
+  /**
+   * Página actual de la paginación.
+   * @default 1
+   */
   currentPage = signal<number>(1);
+  
+  /**
+   * Número de elementos por página.
+   * @default 9
+   */
   itemsPerPage = 9;
   
   // Estado de secciones colapsables
+  /**
+   * Indica si la sección de filtros por tipo está abierta.
+   * @default true
+   */
   tipoSectionOpen = signal<boolean>(true);
+  
+  /**
+   * Indica si la sección de filtros por provincia está abierta.
+   * @default false
+   */
   provinciaSectionOpen = signal<boolean>(false);
+  
+  /**
+   * Indica si la sección de filtros por ciudad está abierta.
+   * @default false
+   */
   ciudadSectionOpen = signal<boolean>(false);
+  
+  /**
+   * Indica si la sección de filtros por habitaciones está abierta.
+   * @default false
+   */
   habitacionesSectionOpen = signal<boolean>(false);
+  
+  /**
+   * Indica si la sección de filtros por baños está abierta.
+   * @default false
+   */
   banosSectionOpen = signal<boolean>(false);
   
   // Modal móvil
+  /**
+   * Indica si el modal de filtros móvil está abierto.
+   * @default false
+   */
   mobileFiltersOpen = signal<boolean>(false);
   
   // Opciones de filtros
+  /**
+   * Lista de tipos de inmueble disponibles.
+   */
   tipos = ['Independiente', 'Finca', 'Ático', 'Villa', 'Adosada', 'Piso', 'Dúplex', 'Estudio', 'Rústica'];
+  
+  /**
+   * Lista de ciudades disponibles (se carga dinámicamente).
+   */
   ciudades: string[] = [];
+  
+  /**
+   * Lista de provincias disponibles (se carga dinámicamente).
+   */
   provincias: string[] = [];
+  
+  /**
+   * Opciones de número de habitaciones disponibles.
+   */
   habitaciones = [1, 2, 3, 4, 5];
+  
+  /**
+   * Opciones de número de baños disponibles.
+   */
   banos = [1, 2, 3, 4];
 
   constructor() {}
 
-  ngOnInit() {
+  /**
+   * Inicializa el componente cargando las propiedades y aplicando filtros iniciales.
+   */
+  ngOnInit(): void {
     this.casas = this.casasCtrl.getCasas();
     this.ciudades = Array.from(new Set(this.casas.map(c => c.ciudad))).sort();
     this.provincias = Array.from(new Set(this.casas.map(c => c.provincia))).sort();
@@ -67,8 +177,22 @@ export class InmueblesComponent implements OnInit {
     this.filteredCasas.set(this.casas);
   }
 
-  // Filtrar inmuebles
-  filterCasas() {
+  /**
+   * Maneja el evento cuando se selecciona una propiedad desde el componente card-inmueble.
+   * Puede usarse para realizar acciones adicionales cuando se selecciona una propiedad.
+   * @param casa - Propiedad seleccionada
+   */
+  onPropiedadSeleccionada(casa: Casa): void {
+    // Aquí se puede agregar lógica adicional, como tracking, analytics, etc.
+    console.log('Propiedad seleccionada:', casa.titulo);
+  }
+
+  /**
+   * Filtra las propiedades según los criterios seleccionados.
+   * Aplica filtros por tipo, provincia, ciudad, precio, habitaciones y baños.
+   * Actualiza la lista de propiedades filtradas y resetea la paginación.
+   */
+  filterCasas(): void {
     let filtered = [...this.casas];
 
     // Filtro por tipos (múltiples selección)

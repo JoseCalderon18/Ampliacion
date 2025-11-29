@@ -1,7 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 
+/**
+ * Componente que muestra tarjetas de características en la página principal.
+ * Cada tarjeta representa un servicio o característica de la inmobiliaria.
+ * 
+ * @example
+ * ```html
+ * <app-card-home 
+ *   (cardSeleccionada)="onCardSeleccionada($event)">
+ * </app-card-home>
+ * ```
+ */
 @Component({
   selector: 'app-card-home',
   standalone: true,
@@ -12,6 +23,17 @@ import { ThemeService } from '../../services/theme.service';
 export class CardHome {
   private themeService = inject(ThemeService);
   isDarkMode = this.themeService.isDarkMode;
+  
+  /**
+   * Evento que se emite cuando el usuario hace clic en una tarjeta.
+   * Emite el título de la tarjeta seleccionada.
+   */
+  @Output() cardSeleccionada = new EventEmitter<string>();
+  
+  /**
+   * Array de tarjetas con información de características de la inmobiliaria.
+   * Cada tarjeta contiene título, icono SVG y texto descriptivo.
+   */
   cards = [
     { 
       title: 'Amplia Cartera de Propiedades', 
@@ -44,4 +66,13 @@ export class CardHome {
       text: 'Nos adaptamos a tus necesidades específicas para ofrecerte un servicio completamente personalizado.' 
     }
   ];
+
+  /**
+   * Maneja el evento de clic en una tarjeta.
+   * Emite el evento cardSeleccionada con el título de la tarjeta.
+   * @param titulo - Título de la tarjeta seleccionada
+   */
+  onCardClick(titulo: string): void {
+    this.cardSeleccionada.emit(titulo);
+  }
 }

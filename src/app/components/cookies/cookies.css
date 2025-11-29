@@ -1,0 +1,18 @@
+/* Animación de entrada del banner de cookies */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Aplicar animación al banner */
+:host {
+  display: block;
+  animation: slideUp 0.4s ease-out;
+}
+

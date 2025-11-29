@@ -92,6 +92,7 @@
     <!-- Botón Saber más -->
     <a 
       [routerLink]="['/inmuebles', casa.id]"
+      (click)="onSaberMas()"
       class="mt-auto w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg text-center transition-all duration-200 transform hover:scale-105 active:scale-95">
       Saber más
     </a>
