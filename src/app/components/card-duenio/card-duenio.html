@@ -1,20 +1,29 @@
-<div class="flex flex-col items-center space-y-3 p-16  rounded-xl">
-  <!-- Círculo con imagen -->
-  <div class="w-64 h-64 rounded-full overflow-hidden border-4  shadow-md">
-    <img
-      [src]="foto"
-      alt="Foto de perfil"
-      [class]="imgClass"
-    >
+<div [ngClass]="{'bg-stone-50 border-stone-200': !isDarkMode(), 'bg-slate-800/80 backdrop-blur-sm border-slate-700/50': isDarkMode()}" class="rounded-2xl p-6 md:p-8 lg:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border">
+  <div class="flex flex-col items-center text-center">
+    <!-- Círculo con imagen -->
+    <div [ngClass]="{'border-amber-200': !isDarkMode(), 'border-amber-800/50': isDarkMode()}" class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 shadow-xl mb-6">
+      <img
+        [src]="foto"
+        [alt]="nombre"
+        class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+        [class]="imgClass">
+    </div>
+
+    <!-- Nombre -->
+    <h3 [ngClass]="{'text-slate-900': !isDarkMode(), 'text-white': isDarkMode()}" class="text-2xl md:text-3xl font-bold mb-2">
+      {{ nombre }}
+    </h3>
+
+    <!-- Título -->
+    <p [ngClass]="{'text-amber-600': !isDarkMode(), 'text-amber-400': isDarkMode()}" class="text-lg font-semibold mb-4">
+      {{ titulo }}
+    </p>
+
+    <!-- Descripción (opcional) -->
+    @if (descripcion) {
+      <p [ngClass]="{'text-slate-600': !isDarkMode(), 'text-slate-300': isDarkMode()}" class="leading-relaxed">
+        {{ descripcion }}
+      </p>
+    }
   </div>
-
-  <!-- Nombre -->
-  <h2 class="text-xxl font-semibold text-gray-800 p-4">
-    {{ nombre }}
-  </h2>
-
-  <!-- Título -->
-  <p class="text-l text-gray-500 text-center">
-    {{ titulo }}
-  </p>
 </div>

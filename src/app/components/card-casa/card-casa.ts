@@ -12,23 +12,5 @@ import { CommonModule } from '@angular/common';
 export class CardCasaComponent {
 
   @Input() casa!: Casa;
-  showFull = false;
-  imagenActual = 0;
-
-anteriorImagen() {
-  if (this.imagenActual === 0) {
-    this.imagenActual = this.casa.imagenes.length - 1;
-  } else {
-    this.imagenActual--;
-  }
-}
-
-siguienteImagen() {
-  if (this.imagenActual === this.casa.imagenes.length - 1) {
-    this.imagenActual = 0;
-  } else {
-    this.imagenActual++;
-  }
-}
 
 }

@@ -1,11 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-postventa',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './postventa.html',
   styleUrls: ['./postventa.css'],
 })
 export class Postventa implements OnInit {
+  private themeService = inject(ThemeService);
+  isDarkMode = this.themeService.isDarkMode;
+
   // Array de testimonios
   testimonials = [
     {

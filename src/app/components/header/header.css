@@ -1,47 +1,94 @@
-/* Header Styles */
-header {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+/* Header Styles - Azul oscuro translúcido elegante */
+.header-main {
+  background: rgba(30, 58, 138, 0.85); /* Azul oscuro translúcido */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
-/* Efectos del link*/
+/* Modo oscuro - Header más oscuro */
+:host-context(.dark) .header-main {
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Efectos del link - Mantener efecto after */
 .nav-link {
   position: relative;
   transition: all 0.3s ease-in-out;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.nav-link:hover {
-  color: #2563eb;
-  padding-left: 0.5rem;
-}
-
-/* Active link styling */
-:host ::ng-deep a[routerLinkActive='active'] {
-  color: #000000;
-  font-weight: 700;
-}
-
-/* Desktop auth buttons */
-.auth-btn-login {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.auth-btn-login::after {
+.nav-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #2563eb;
+  background-color: rgba(255, 255, 255, 0.9);
   transition: width 0.3s ease;
 }
 
-.auth-btn-login:hover::after {
+.nav-link:hover {
+  color: rgba(255, 255, 255, 1);
+  padding-left: 0.5rem;
+}
+
+.nav-link:hover::after {
   width: 100%;
 }
 
+/* Modo oscuro - Links más claros */
+:host-context(.dark) .nav-link {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+:host-context(.dark) .nav-link::after {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Active link styling - sin línea, solo en hover */
+:host ::ng-deep a[routerLinkActive='active'] {
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 700;
+}
+
+
+/* Menú móvil */
+.mobile-nav-border {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.mobile-nav-link {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mobile-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Modo oscuro - Menú móvil */
+:host-context(.dark) .mobile-nav-link {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+:host-context(.dark) .mobile-nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Menú móvil collapse - fondo */
+ul.max-lg\:bg-white {
+  background-color: rgba(30, 58, 138, 0.95) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+:host-context(.dark) ul.max-lg\:bg-white {
+  background-color: rgba(15, 23, 42, 0.95) !important;
+}
 
 /* Mobile menu animations */
 @media (max-width: 1024px) {
@@ -58,15 +105,6 @@ header {
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  /* Mobile auth buttons */
-  .auth-btn-mobile {
-    transition: all 0.2s ease;
-  }
-
-  .auth-btn-mobile:active {
-    transform: scale(0.98);
   }
 }
 

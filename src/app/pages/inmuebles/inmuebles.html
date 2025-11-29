@@ -1,26 +1,661 @@
-<!-- Contenedor principal de la página de inmuebles con padding responsivo -->
-<!-- w-full: ancho completo
-     px-4 sm:px-6 md:px-8 lg:px-10: padding horizontal escalable según breakpoints
-     py-8: padding vertical de 8 unidades (32px) -->
-<div class="w-full px-4 sm:px-6 md:px-8 lg:px-10 py-8">
-  <!-- Grid layout: sistema responsivo de columnas dinámicas
-       grid-cols-1: 1 columna en móvil
-       sm:grid-cols-2: 2 columnas en tablet pequeño
-       md:grid-cols-3: 3 columnas en tablet
-       lg:grid-cols-4: 4 columnas en desktop
-       xl:grid-cols-5: 5 columnas en pantallas muy grandes
-       gap-4 xl:gap-8: espaciado entre items, mayor en xl
-       max-w-7xl: ancho máximo para mejor legibilidad
-       mx-auto: centrado horizontal -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:gap-8 max-w-7xl mx-auto">
-    <!-- Componente reutilizable de tarjeta de casa
-         *ngFor="let c of casas": directiva Angular que itera sobre el array 'casas'
-         [casa]="c": property binding - pasa cada elemento 'c' al componente como input
-         Genera dinámicamente un card por cada propiedad inmobiliaria en el array -->
-    <app-card-casa
-      *ngFor="let c of casas"
-      [casa]="c">
-    </app-card-casa>
-  </div>
-</div>
+<div class="w-full " [ngClass]="{'bg-white': !isDarkMode(), 'bg-gradient-to-b from-slate-800 to-slate-900': isDarkMode()}">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Encabezado con botón de filtros móvil -->
+    <div class="flex items-baseline justify-between border-b border-slate-200 dark:border-slate-700 pt-10 sm:pt-12 md:pt-12 pb-6">
+      <div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-2">Nuestros Inmuebles</h1>
+        <p class="text-slate-600 dark:text-slate-300 text-base md:text-lg">
+          Descubre nuestra selección exclusiva de propiedades premium
+        </p>
+      </div>
+      <div class="flex items-center gap-4">
+        <!-- Botón filtros móvil -->
+        <button 
+          type="button" 
+          (click)="openMobileFilters()"
+          class="lg:hidden -m-2 ml-4 p-2 text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+          <span class="sr-only">Filtros</span>
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 0 1 .628.74v2.288a2.25 2.25 0 0 1-.659 1.59l-4.682 4.683a2.25 2.25 0 0 0-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 0 1 8 18.25v-5.757a2.25 2.25 0 0 0-.659-1.591L2.659 6.22A2.25 2.25 0 0 1 2 4.629V2.34a.75.75 0 0 1 .628-.74Z" clip-rule="evenodd" fill-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+    </div>
 
+    <section class="pt-6 pb-24">
+      <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+        <!-- Filtros Desktop (Sidebar) -->
+        <form class="hidden lg:block">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Filtros</h2>
+            <button 
+              type="button"
+              (click)="resetFilters()"
+              class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
+              Limpiar
+            </button>
+          </div>
+
+          <!-- Filtro: Tipo de Inmueble -->
+          <div class="border-b border-slate-200 dark:border-slate-700 py-6">
+            <h3 class="-my-3 flow-root">
+              <button 
+                type="button"
+                (click)="toggleTipoSection()"
+                class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                <span class="font-medium text-slate-900 dark:text-white">Tipo de Inmueble</span>
+                <span class="ml-6 flex items-center">
+                  @if (tipoSectionOpen()) {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                  } @else {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                    </svg>
+                  }
+                </span>
+              </button>
+            </h3>
+            @if (tipoSectionOpen()) {
+              <div class="pt-6 space-y-4">
+                @for (tipo of tipos; track tipo) {
+                  <div class="flex gap-3">
+                    <div class="flex h-5 shrink-0 items-center">
+                      <div class="group grid size-4 grid-cols-1">
+                        <input 
+                          type="checkbox"
+                          [checked]="selectedTipos().includes(tipo)"
+                          (change)="toggleTipo(tipo)"
+                          id="filter-tipo-{{ tipo }}"
+                          class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                          <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+                    <label for="filter-tipo-{{ tipo }}" class="text-sm font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ tipo }}</label>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Filtro: Provincia -->
+          <div class="border-b border-slate-200 dark:border-slate-700 py-6">
+            <h3 class="-my-3 flow-root">
+              <button 
+                type="button"
+                (click)="toggleProvinciaSection()"
+                class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                <span class="font-medium text-slate-900 dark:text-white">Provincia</span>
+                <span class="ml-6 flex items-center">
+                  @if (provinciaSectionOpen()) {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                  } @else {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                    </svg>
+                  }
+                </span>
+              </button>
+            </h3>
+            @if (provinciaSectionOpen()) {
+              <div class="pt-6 space-y-4">
+                @for (provincia of provincias; track provincia) {
+                  <div class="flex gap-3">
+                    <div class="flex h-5 shrink-0 items-center">
+                      <div class="group grid size-4 grid-cols-1">
+                        <input 
+                          type="checkbox"
+                          [checked]="selectedProvincias().includes(provincia)"
+                          (change)="toggleProvincia(provincia)"
+                          id="filter-provincia-{{ provincia }}"
+                          class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                          <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+                    <label for="filter-provincia-{{ provincia }}" class="text-sm font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ provincia }}</label>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Filtro: Ciudad -->
+          <div class="border-b border-slate-200 dark:border-slate-700 py-6">
+            <h3 class="-my-3 flow-root">
+              <button 
+                type="button"
+                (click)="toggleCiudadSection()"
+                class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                <span class="font-medium text-slate-900 dark:text-white">Ciudad</span>
+                <span class="ml-6 flex items-center">
+                  @if (ciudadSectionOpen()) {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                  } @else {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                    </svg>
+                  }
+                </span>
+              </button>
+            </h3>
+            @if (ciudadSectionOpen()) {
+              <div class="pt-6 space-y-4 max-h-64 overflow-y-auto">
+                @for (ciudad of ciudades; track ciudad) {
+                  <div class="flex gap-3">
+                    <div class="flex h-5 shrink-0 items-center">
+                      <div class="group grid size-4 grid-cols-1">
+                        <input 
+                          type="checkbox"
+                          [checked]="selectedCiudades().includes(ciudad)"
+                          (change)="toggleCiudad(ciudad)"
+                          id="filter-ciudad-{{ ciudad }}"
+                          class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                          <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+                    <label for="filter-ciudad-{{ ciudad }}" class="text-sm font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ ciudad }}</label>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Filtro: Precio -->
+          <div class="border-b border-slate-200 dark:border-slate-700 py-6">
+            <h3 class="font-medium text-slate-900 dark:text-white mb-4">Precio</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-semibold text-slate-900 dark:text-slate-400 mb-2">Precio mínimo (€)</label>
+                <input 
+                  type="number"
+                  [(ngModel)]="precioMin"
+                  (ngModelChange)="onPrecioChange()"
+                  name="precioMin"
+                  [min]="0"
+                  [max]="precioMax()"
+                  [ngClass]="{'bg-white border-slate-300 text-slate-900': !isDarkMode(), 'bg-slate-800 border-slate-600 text-white': isDarkMode()}"
+                  class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-900 dark:text-slate-400 mb-2">Precio máximo (€)</label>
+                <input 
+                  type="number"
+                  [(ngModel)]="precioMax"
+                  (ngModelChange)="onPrecioChange()"
+                  name="precioMax"
+                  [min]="precioMin()"
+                  [ngClass]="{'bg-white border-slate-300 text-slate-900': !isDarkMode(), 'bg-slate-800 border-slate-600 text-white': isDarkMode()}"
+                  class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- Filtro: Habitaciones -->
+          <div class="border-b border-slate-200 dark:border-slate-700 py-6">
+            <h3 class="-my-3 flow-root">
+              <button 
+                type="button"
+                (click)="toggleHabitacionesSection()"
+                class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                <span class="font-medium text-slate-900 dark:text-white">Habitaciones</span>
+                <span class="ml-6 flex items-center">
+                  @if (habitacionesSectionOpen()) {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                  } @else {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                    </svg>
+                  }
+                </span>
+              </button>
+            </h3>
+            @if (habitacionesSectionOpen()) {
+              <div class="pt-6 space-y-4">
+                @for (num of habitaciones; track num) {
+                  <div class="flex gap-3">
+                    <div class="flex h-5 shrink-0 items-center">
+                      <div class="group grid size-4 grid-cols-1">
+                        <input 
+                          type="checkbox"
+                          [checked]="selectedHabitaciones().includes(num)"
+                          (change)="toggleHabitaciones(num)"
+                          id="filter-habitaciones-{{ num }}"
+                          class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                          <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+                    <label for="filter-habitaciones-{{ num }}" class="text-sm font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ num }}</label>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Filtro: Baños -->
+          <div class="border-b border-slate-200 dark:border-slate-700 py-6">
+            <h3 class="-my-3 flow-root">
+              <button 
+                type="button"
+                (click)="toggleBanosSection()"
+                class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                <span class="font-medium text-slate-900 dark:text-white">Baños</span>
+                <span class="ml-6 flex items-center">
+                  @if (banosSectionOpen()) {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                  } @else {
+                    <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                    </svg>
+                  }
+                </span>
+              </button>
+            </h3>
+            @if (banosSectionOpen()) {
+              <div class="pt-6 space-y-4">
+                @for (num of banos; track num) {
+                  <div class="flex gap-3">
+                    <div class="flex h-5 shrink-0 items-center">
+                      <div class="group grid size-4 grid-cols-1">
+                        <input 
+                          type="checkbox"
+                          [checked]="selectedBanos().includes(num)"
+                          (change)="toggleBanos(num)"
+                          id="filter-banos-{{ num }}"
+                          class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                        <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                          <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </div>
+                    </div>
+                    <label for="filter-banos-{{ num }}" class="text-sm font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ num }}</label>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </form>
+
+        <!-- Grid de inmuebles -->
+        <div class="lg:col-span-3">
+          <!-- Resultados -->
+          <div class="mb-6 text-sm text-slate-800 dark:text-slate-400">
+            Mostrando {{ paginatedCasas().length }} de {{ filteredCasas().length }} inmuebles
+          </div>
+
+          <!-- Grid de inmuebles (3 columnas) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            @for (casa of paginatedCasas(); track casa.id) {
+              <app-card-inmueble [casa]="casa"></app-card-inmueble>
+            }
+            @if (paginatedCasas().length === 0) {
+              <div class="col-span-full text-center py-12">
+                <p class="text-slate-800 dark:text-slate-400 text-lg">No se encontraron inmuebles con los filtros seleccionados</p>
+              </div>
+            }
+          </div>
+
+          <!-- Paginación -->
+          @if (totalPages() > 1) {
+            <div class="flex justify-center items-center gap-1 sm:gap-2 mt-8 flex-wrap">
+              <button 
+                (click)="goToPage(currentPage() - 1)"
+                [disabled]="currentPage() === 1"
+                [class.opacity-50]="currentPage() === 1"
+                [class.cursor-not-allowed]="currentPage() === 1"
+                [ngClass]="{'bg-white border-slate-300 text-slate-900 hover:bg-slate-50': !isDarkMode(), 'bg-slate-800 border-slate-600 text-white hover:bg-slate-700': isDarkMode()}"
+                class="px-2 sm:px-4 py-2 text-xs sm:text-sm rounded-lg border transition-all disabled:hover:bg-white dark:disabled:hover:bg-slate-800">
+                <span class="hidden sm:inline">Anterior</span>
+                <span class="sm:hidden">‹</span>
+              </button>
+              
+              <!-- Mostrar números de página con lógica responsive -->
+              @for (page of getVisiblePages(); track $index) {
+                @if (page === '...') {
+                  <span [ngClass]="{'text-slate-600': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="px-2 py-2 text-xs sm:text-sm">...</span>
+                } @else {
+                  <button 
+                    (click)="goToPage(typeof page === 'number' ? page : 1)"
+                    [ngClass]="{
+                      'bg-blue-600 text-white': currentPage() === page,
+                      'bg-white border-slate-300 text-slate-900 hover:bg-slate-50': !isDarkMode() && currentPage() !== page,
+                      'bg-slate-800 border-slate-600 text-white hover:bg-slate-700': isDarkMode() && currentPage() !== page
+                    }"
+                    class="px-2 sm:px-4 py-2 text-xs sm:text-sm rounded-lg border transition-all min-w-[32px] sm:min-w-[40px]">
+                    {{ page }}
+                  </button>
+                }
+              }
+              
+              <button 
+                (click)="goToPage(currentPage() + 1)"
+                [disabled]="currentPage() === totalPages()"
+                [class.opacity-50]="currentPage() === totalPages()"
+                [class.cursor-not-allowed]="currentPage() === totalPages()"
+                [ngClass]="{'bg-white border-slate-300 text-slate-900 hover:bg-slate-50': !isDarkMode(), 'bg-slate-800 border-slate-600 text-white hover:bg-slate-700': isDarkMode()}"
+                class="px-2 sm:px-4 py-2 text-xs sm:text-sm rounded-lg border transition-all disabled:hover:bg-white dark:disabled:hover:bg-slate-800">
+                <span class="hidden sm:inline">Siguiente</span>
+                <span class="sm:hidden">›</span>
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal de filtros móvil -->
+  @if (mobileFiltersOpen()) {
+    <div class="fixed inset-0 z-50 lg:hidden">
+      <!-- Backdrop -->
+      <div 
+        (click)="closeMobileFilters()"
+        class="fixed inset-0 bg-black/25 transition-opacity"></div>
+      
+      <!-- Panel -->
+      <div class="fixed inset-y-0 right-0 flex max-w-full pl-10">
+        <div class="w-screen max-w-xs">
+          <div class="flex h-full flex-col overflow-y-auto bg-white dark:bg-slate-800 py-4 shadow-xl">
+            <!-- Header -->
+            <div class="flex items-center justify-between px-4">
+              <h2 class="text-lg font-medium text-slate-900 dark:text-white">Filtros</h2>
+              <button 
+                type="button"
+                (click)="closeMobileFilters()"
+                class="relative -mr-2 flex size-10 items-center justify-center rounded-md bg-white dark:bg-slate-800 p-2 text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <span class="sr-only">Cerrar</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6">
+                  <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Filtros móvil (mismo contenido que desktop pero en scroll) -->
+            <form class="mt-4 border-t border-slate-200 dark:border-slate-700">
+              <!-- Tipo -->
+              <div class="border-b border-slate-200 dark:border-slate-700 px-4 py-6">
+                <h3 class="-mx-2 -my-3 flow-root">
+                  <button 
+                    type="button"
+                    (click)="toggleTipoSection()"
+                    class="flex w-full items-center justify-between bg-white dark:bg-slate-800 px-2 py-3 text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                    <span class="font-medium text-slate-900 dark:text-white">Tipo de Inmueble</span>
+                    <span class="ml-6 flex items-center">
+                      @if (tipoSectionOpen()) {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                        </svg>
+                      } @else {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                        </svg>
+                      }
+                    </span>
+                  </button>
+                </h3>
+                @if (tipoSectionOpen()) {
+                  <div class="pt-6 space-y-6">
+                    @for (tipo of tipos; track tipo) {
+                      <div class="flex gap-3">
+                        <div class="flex h-5 shrink-0 items-center">
+                          <div class="group grid size-4 grid-cols-1">
+                            <input 
+                              type="checkbox"
+                              [checked]="selectedTipos().includes(tipo)"
+                              (change)="toggleTipo(tipo)"
+                              id="filter-mobile-tipo-{{ tipo }}"
+                              class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                              <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </div>
+                        </div>
+                        <label for="filter-mobile-tipo-{{ tipo }}" class="min-w-0 flex-1 font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ tipo }}</label>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- Provincia -->
+              <div class="border-b border-slate-200 dark:border-slate-700 px-4 py-6">
+                <h3 class="-mx-2 -my-3 flow-root">
+                  <button 
+                    type="button"
+                    (click)="toggleProvinciaSection()"
+                    class="flex w-full items-center justify-between bg-white dark:bg-slate-800 px-2 py-3 text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                    <span class="font-medium text-slate-900 dark:text-white">Provincia</span>
+                    <span class="ml-6 flex items-center">
+                      @if (provinciaSectionOpen()) {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                        </svg>
+                      } @else {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                        </svg>
+                      }
+                    </span>
+                  </button>
+                </h3>
+                @if (provinciaSectionOpen()) {
+                  <div class="pt-6 space-y-6">
+                    @for (provincia of provincias; track provincia) {
+                      <div class="flex gap-3">
+                        <div class="flex h-5 shrink-0 items-center">
+                          <div class="group grid size-4 grid-cols-1">
+                            <input 
+                              type="checkbox"
+                              [checked]="selectedProvincias().includes(provincia)"
+                              (change)="toggleProvincia(provincia)"
+                              id="filter-mobile-provincia-{{ provincia }}"
+                              class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                              <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </div>
+                        </div>
+                        <label for="filter-mobile-provincia-{{ provincia }}" class="min-w-0 flex-1 font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ provincia }}</label>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- Ciudad -->
+              <div class="border-b border-slate-200 dark:border-slate-700 px-4 py-6">
+                <h3 class="-mx-2 -my-3 flow-root">
+                  <button 
+                    type="button"
+                    (click)="toggleCiudadSection()"
+                    class="flex w-full items-center justify-between bg-white dark:bg-slate-800 px-2 py-3 text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                    <span class="font-medium text-slate-900 dark:text-white">Ciudad</span>
+                    <span class="ml-6 flex items-center">
+                      @if (ciudadSectionOpen()) {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                        </svg>
+                      } @else {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                        </svg>
+                      }
+                    </span>
+                  </button>
+                </h3>
+                @if (ciudadSectionOpen()) {
+                  <div class="pt-6 space-y-6 max-h-64 overflow-y-auto">
+                    @for (ciudad of ciudades; track ciudad) {
+                      <div class="flex gap-3">
+                        <div class="flex h-5 shrink-0 items-center">
+                          <div class="group grid size-4 grid-cols-1">
+                            <input 
+                              type="checkbox"
+                              [checked]="selectedCiudades().includes(ciudad)"
+                              (change)="toggleCiudad(ciudad)"
+                              id="filter-mobile-ciudad-{{ ciudad }}"
+                              class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                              <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </div>
+                        </div>
+                        <label for="filter-mobile-ciudad-{{ ciudad }}" class="min-w-0 flex-1 font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ ciudad }}</label>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- Precio -->
+              <div class="border-b border-slate-200 dark:border-slate-700 px-4 py-6">
+                <h3 class="font-medium text-slate-900 dark:text-white mb-4">Precio</h3>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-semibold text-slate-900 dark:text-slate-400 mb-2">Precio mínimo (€)</label>
+                    <input 
+                      type="number"
+                      [(ngModel)]="precioMin"
+                      (ngModelChange)="onPrecioChange()"
+                      name="precioMinMobile"
+                      [min]="0"
+                      [max]="precioMax()"
+                      [ngClass]="{'bg-white border-slate-300 text-slate-900': !isDarkMode(), 'bg-slate-800 border-slate-600 text-white': isDarkMode()}"
+                      class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-semibold text-slate-900 dark:text-slate-400 mb-2">Precio máximo (€)</label>
+                    <input 
+                      type="number"
+                      [(ngModel)]="precioMax"
+                      (ngModelChange)="onPrecioChange()"
+                      name="precioMaxMobile"
+                      [min]="precioMin()"
+                      [ngClass]="{'bg-white border-slate-300 text-slate-900': !isDarkMode(), 'bg-slate-800 border-slate-600 text-white': isDarkMode()}"
+                      class="w-full px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Habitaciones -->
+              <div class="border-b border-slate-200 dark:border-slate-700 px-4 py-6">
+                <h3 class="-mx-2 -my-3 flow-root">
+                  <button 
+                    type="button"
+                    (click)="toggleHabitacionesSection()"
+                    class="flex w-full items-center justify-between bg-white dark:bg-slate-800 px-2 py-3 text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                    <span class="font-medium text-slate-900 dark:text-white">Habitaciones</span>
+                    <span class="ml-6 flex items-center">
+                      @if (habitacionesSectionOpen()) {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                        </svg>
+                      } @else {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                        </svg>
+                      }
+                    </span>
+                  </button>
+                </h3>
+                @if (habitacionesSectionOpen()) {
+                  <div class="pt-6 space-y-6">
+                    @for (num of habitaciones; track num) {
+                      <div class="flex gap-3">
+                        <div class="flex h-5 shrink-0 items-center">
+                          <div class="group grid size-4 grid-cols-1">
+                            <input 
+                              type="checkbox"
+                              [checked]="selectedHabitaciones().includes(num)"
+                              (change)="toggleHabitaciones(num)"
+                              id="filter-mobile-habitaciones-{{ num }}"
+                              class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                              <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </div>
+                        </div>
+                        <label for="filter-mobile-habitaciones-{{ num }}" class="min-w-0 flex-1 font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ num }}</label>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- Baños -->
+              <div class="border-b border-slate-200 dark:border-slate-700 px-4 py-6">
+                <h3 class="-mx-2 -my-3 flow-root">
+                  <button 
+                    type="button"
+                    (click)="toggleBanosSection()"
+                    class="flex w-full items-center justify-between bg-white dark:bg-slate-800 px-2 py-3 text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+                    <span class="font-medium text-slate-900 dark:text-white">Baños</span>
+                    <span class="ml-6 flex items-center">
+                      @if (banosSectionOpen()) {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd" fill-rule="evenodd" />
+                        </svg>
+                      } @else {
+                        <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                        </svg>
+                      }
+                    </span>
+                  </button>
+                </h3>
+                @if (banosSectionOpen()) {
+                  <div class="pt-6 space-y-6">
+                    @for (num of banos; track num) {
+                      <div class="flex gap-3">
+                        <div class="flex h-5 shrink-0 items-center">
+                          <div class="group grid size-4 grid-cols-1">
+                            <input 
+                              type="checkbox"
+                              [checked]="selectedBanos().includes(num)"
+                              (change)="toggleBanos(num)"
+                              id="filter-mobile-banos-{{ num }}"
+                              class="col-start-1 row-start-1 appearance-none rounded-sm border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 checked:border-blue-600 dark:checked:border-blue-500 checked:bg-blue-600 dark:checked:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
+                            <svg viewBox="0 0 14 14" fill="none" class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white opacity-0 group-has-[:checked]:opacity-100">
+                              <path d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </div>
+                        </div>
+                        <label for="filter-mobile-banos-{{ num }}" class="min-w-0 flex-1 font-medium text-slate-900 dark:text-slate-400 cursor-pointer">{{ num }}</label>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- Botón limpiar -->
+              <div class="px-4 py-6">
+                <button 
+                  type="button"
+                  (click)="resetFilters(); closeMobileFilters()"
+                  class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-all">
+                  Limpiar filtros
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

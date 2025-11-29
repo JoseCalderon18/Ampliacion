@@ -1,4 +1,5 @@
 export interface Casa {
+  id?: string;
   titulo: string;
   direccion: string;
   ciudad: string;

@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-card-home',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './card-home.html',
   styleUrls: ['./card-home.css'],
 })
 export class CardHome {
+  private themeService = inject(ThemeService);
+  isDarkMode = this.themeService.isDarkMode;
   cards = [
     { 
       title: 'Amplia Cartera de Propiedades', 

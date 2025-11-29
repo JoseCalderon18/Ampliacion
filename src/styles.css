@@ -2,3 +2,110 @@
 @import "tailwindcss";
 @import "tailwindcss-animated";
 @import 'aos/dist/aos.css';
+
+/* Modo Claro (por defecto) */
+:root,
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #000000;
+  --text-secondary: #374151;
+  --border-color: #e5e7eb;
+}
+
+/* Modo Oscuro - Colores mejorados */
+.dark {
+  --bg-primary: #1a1f2e;
+  --bg-secondary: #252b3b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: #475569;
+}
+
+/* Aplicar colores globales */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Invertir colores de fondo y texto en modo oscuro */
+.dark body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Eliminadas las reglas que forzaban cambios automáticos de color en modo oscuro */
+/* Ahora solo los elementos con clases dark: de Tailwind cambiarán de color */
+
+/* FORZAR fondo beige claro en modo claro - PRIORIDAD MÁXIMA */
+:root:not(.dark) .bg-stone-100,
+.light .bg-stone-100,
+html:not(.dark) .bg-stone-100 {
+  background-color: #f5f5f4 !important;
+  background-image: none !important;
+}
+
+:root:not(.dark) div.bg-stone-100,
+.light div.bg-stone-100 {
+  background: #f5f5f4 !important;
+  background-color: #f5f5f4 !important;
+  background-image: none !important;
+}
+
+/* FORZAR fondo beige claro para las cards en modo claro */
+:root:not(.dark) .bg-stone-50,
+.light .bg-stone-50,
+html:not(.dark) .bg-stone-50 {
+  background-color: #fafaf9 !important;
+  background-image: none !important;
+}
+
+:root:not(.dark) div.bg-stone-50,
+.light div.bg-stone-50 {
+  background: #fafaf9 !important;
+  background-color: #fafaf9 !important;
+  background-image: none !important;
+}
+
+/* Eliminadas las reglas que forzaban fondos y gradientes en modo oscuro */
+
+/* PREVENIR que gradientes oscuros se apliquen en modo claro */
+:root:not(.dark) .bg-gradient-to-br:not([class*="from-blue"]):not([class*="from-emerald"]):not([class*="from-orange"]):not([class*="from-cyan"]),
+.light .bg-gradient-to-br:not([class*="from-blue"]):not([class*="from-emerald"]):not([class*="from-orange"]):not([class*="from-cyan"]) {
+  background-image: none !important;
+}
+
+/* Asegurar que divs con bg-stone-100 en modo claro NO tengan gradientes */
+:root:not(.dark) div[class*="bg-stone-100"],
+.light div[class*="bg-stone-100"] {
+  background: #f5f5f4 !important;
+  background-color: #f5f5f4 !important;
+  background-image: none !important;
+}
+
+/* Asegurar textos oscuros en modo claro */
+:root:not(.dark) .text-slate-900,
+.light .text-slate-900 {
+  color: #0f172a !important;
+}
+
+:root:not(.dark) .text-slate-800,
+.light .text-slate-800 {
+  color: #1e293b !important;
+}
+
+:root:not(.dark) .text-slate-700,
+.light .text-slate-700 {
+  color: #334155 !important;
+}
+
+:root:not(.dark) .text-slate-600,
+.light .text-slate-600 {
+  color: #475569 !important;
+}
+
+/* Transiciones suaves para todos los cambios */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

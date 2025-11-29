@@ -1,98 +1,117 @@
-<!-- Contenedor principal de la sección de historia con padding responsive -->
-<!-- px-4 sm:px-6 md:px-8: padding horizontal escalable según breakpoints
-     py-8 md:py-12: padding vertical mayor en desktop -->
-<div class="w-full px-4 sm:px-6 md:px-8 py-8 md:py-12">
-  <!-- Título principal (h1): elemento semántico de máxima importancia SEO -->
-  <!-- font-extrabold: peso de fuente máximo (900)
-       text-3xl sm:text-4xl md:text-5xl lg:text-5xl: tamaño escalable (responsive)
-       font-serif: tipografía serif para elegancia
-       text-center pt-6 sm:pt-10: padding superior responsive
-       mb-12 md:mb-16: margen inferior grande para separación -->
-  <h1 class="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-center pt-6 sm:pt-10 font-serif mb-12 md:mb-16">
-    NUESTRA HISTORIA
-  </h1>
-  <!-- Grid layout responsivo con 3 columnas en lg
-       grid-cols-1: 1 columna en móvil
-       md:grid-cols-2: 2 columnas en tablet
-       lg:grid-cols-[1fr_2fr_1fr]: 3 columnas en desktop (1-2-1 proporción)
-       gap-6 sm:gap-8 md:gap-10 lg:gap-6: espaciado entre items escalable -->
-  <div class="max-w-7xl mx-auto grid grid-cols-1 gap-6 sm:gap-8 md:gap-10 lg:gap-6 md:grid-cols-2 lg:grid-cols-[1fr_2fr_1fr]">
+<!-- Encabezado -->
+<div class="py-5 md:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 bg-stone-100 dark:bg-slate-800 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900">
+  <div class="max-w-7xl mx-auto text-center">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-6 tracking-tight" 
+        style="font-family: 'Cormorant Garamond', 'Playfair Display', serif;"
+        data-aos="fade-down">
+      Nuestra Historia
+    </h1>
+    <p class="text-base sm:text-lg lg:text-xl text-slate-700 dark:text-slate-200 max-w-4xl mx-auto leading-relaxed font-light italic mb-4" 
+       style="font-family: 'Cormorant Garamond', 'Playfair Display', serif;"
+       data-aos="fade-up" 
+       data-aos-delay="100">
+      Más de <span class="font-semibold text-amber-600 dark:text-amber-400">25 años</span> construyendo relaciones duraderas y ayudando a nuestros clientes a encontrar el <span class="font-semibold text-blue-600 dark:text-blue-400">hogar de sus sueños</span>.
+    </p>
+    <p class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed" 
+       style="font-family: 'Cormorant Garamond', 'Playfair Display', serif;"
+       data-aos="fade-up" 
+       data-aos-delay="200">
+      Desde nuestros humildes comienzos en 1998, hemos crecido hasta convertirnos en una de las inmobiliarias más reconocidas de la región, siempre manteniendo nuestros valores fundamentales de <span class="font-semibold text-slate-900 dark:text-white">integridad, transparencia y compromiso</span> con cada cliente que confía en nosotros.
+    </p>
+  </div>
+</div>
 
-    <!-- Primer card -->
-    <div class="md:col-span-1 lg:col-span-1 md:order-2 lg:order-1">
-      <!-- Contenedor de la tarjeta del dueño -->
-      <!-- Componente Angular reutilizable que recibe props:
-           - foto: ruta de la imagen
-           - nombre: nombre del dueño
-           - titulo: descripción/profesión
-           - imgClass: clases Tailwind para la imagen (scale-105 zoom al hover) -->
-      <app-card-duenio
-        foto="assets/img/duenio.jpg"
-        nombre="Juan María M. De Leyva"
-        titulo="Perito Judicial tasador de bienes inmuebles"
-        imgClass="w-full h-auto object-cover bg-white hover:scale-105 transition-transform duration-300">
-      </app-card-duenio>
+<!-- Sección Principal: Fundadores y Historia -->
+<div class="py-5 md:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 bg-stone-100 dark:bg-slate-800 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900">
+  <div class="max-w-7xl mx-auto">
+    <!-- Grid de Fundadores -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
+      <!-- Fundador 1 -->
+      <div data-aos="fade-right">
+        <app-card-duenio
+          foto="assets/img/duenio.jpg"
+          nombre="Juan María M. De Leyva"
+          titulo="Perito Judicial Tasador de Bienes Inmuebles"
+          descripcion="Especialista en valoración inmobiliaria con más de 25 años de experiencia. Su dedicación y conocimiento técnico han sido fundamentales en el crecimiento de la empresa.">
+        </app-card-duenio>
+      </div>
+
+      <!-- Fundadora 2 -->
+      <div data-aos="fade-left">
+        <app-card-duenio
+          foto="assets/img/duenia.jpg"
+          nombre="Beatriz Illescas Martín"
+          titulo="Abogada y Asesora de Empresa"
+          descripcion="Experta en derecho inmobiliario y asesoría empresarial. Su visión estratégica y compromiso con la excelencia han guiado la expansión de la empresa.">
+        </app-card-duenio>
+      </div>
     </div>
 
-    <!-- Texto descriptivo: contenedor central con contenido principal
-         md:col-span-2: ocupa 2 columnas en tablet (todo el ancho)
-         lg:col-span-1: ocupa 1 columna en desktop (centro)
-         p-4 sm:p-6: padding escalable
-         md:order-1 lg:order-2: order-1 en tablet, order-2 en desktop -->
-    <div class="md:col-span-2 lg:col-span-1 p-4 sm:p-6 md:order-1 lg:order-2">
-      <!-- Párrafo 1: Introducción con énfasis en valores clave
-           mb-4 sm:mb-6: margen inferior escalable
-           leading-relaxed: line-height aumentado para mejor legibilidad
-           text-gray-800: color oscuro pero no completamente negro para menos tensión visual
-           span.font-bold: resalta palabras clave (negrita) -->
-      <p class="mb-4 sm:mb-6 text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
-        La historia de <span class="font-bold">Leyva Illescas</span> es la historia de <span class="font-bold">pasión, compromiso y visión</span>. Desde nuestros inicios, nos hemos dedicado a ofrecer soluciones innovadoras que combinan <span class="font-bold">calidad, eficiencia</span> y un profundo respeto por nuestros clientes.
-      </p>
-
-      <!-- Párrafo 2: Información sobre la fundación con campos para editar (placeholders) -->
-      <p class="mb-4 sm:mb-6 text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
-        Fundada hace más de <span class="font-bold">[X años]</span> por <span class="font-bold">[Nombre del fundador o fundadores]</span>, la empresa nació con un propósito claro: brindar <span class="font-bold">productos y servicios que marcaran la diferencia</span> en el mercado, siempre poniendo a las personas y la excelencia en el centro de nuestro trabajo.
-      </p>
-
-      <!-- Párrafo 3: Narrativa del crecimiento empresarial -->
-      <p class="mb-4 sm:mb-6 text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
-        A lo largo de los años, <span class="font-bold">Leyva Illescas</span> ha crecido gracias al esfuerzo constante de un equipo comprometido, la confianza de nuestros clientes y la innovación constante en cada proyecto que emprendemos.
-      </p>
-
-      <!-- Párrafo 4 (último): Síntesis de valores y visión futura
-           text sin margen inferior (último elemento) -->
-      <p class="text-base sm:text-lg md:text-lg leading-relaxed text-gray-800">
-        Hoy, seguimos expandiéndonos, siempre fieles a nuestros valores de <span class="font-bold">integridad, calidad y cercanía</span>. Más que una empresa, somos una <span class="font-bold">familia</span> que construye relaciones duraderas con clientes, colaboradores y la comunidad, buscando dejar una <span class="font-bold">huella positiva</span> en todo lo que hacemos.
-      </p>
+    <!-- Historia de la Empresa -->
+    <div class="bg-stone-50 dark:bg-slate-800/80 dark:backdrop-blur-sm rounded-2xl p-8 md:p-12 lg:p-16 shadow-xl border border-stone-200 dark:border-slate-700/50 mb-16" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif italic text-center text-slate-900 dark:text-white mb-8 lg:mb-12 tracking-wide font-light" style="letter-spacing: 0.05em;">
+        Nuestro Compromiso con los Clientes
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <p class="mb-6 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-200">
+            La historia de <span class="font-bold text-slate-900 dark:text-white">Leyva Illescas</span> es la historia de <span class="font-bold text-slate-900 dark:text-white">pasión, compromiso y visión</span>. Desde nuestros inicios en 1998, nos hemos dedicado a ofrecer soluciones innovadoras que combinan <span class="font-bold text-slate-900 dark:text-white">calidad, eficiencia</span> y un profundo respeto por nuestros clientes.
+          </p>
+          <p class="mb-6 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-200">
+            Fundada por <span class="font-bold text-slate-900 dark:text-white">Juan María M. De Leyva y Beatriz Illescas Martín</span>, la empresa nació con un propósito claro: brindar <span class="font-bold text-slate-900 dark:text-white">servicios que marcaran la diferencia</span> en el mercado inmobiliario, siempre poniendo a las personas y la excelencia en el centro de nuestro trabajo.
+          </p>
+        </div>
+        <div>
+          <p class="mb-6 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-200">
+            A lo largo de más de <span class="font-bold text-slate-900 dark:text-white">25 años</span>, <span class="font-bold text-slate-900 dark:text-white">Leyva Illescas</span> ha crecido gracias al esfuerzo constante de un equipo comprometido, la confianza de nuestros clientes y la innovación constante en cada proyecto que emprendemos.
+          </p>
+          <p class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-200">
+            Hoy, seguimos expandiéndonos, siempre fieles a nuestros valores de <span class="font-bold text-slate-900 dark:text-white">integridad, calidad y cercanía</span>. Más que una empresa, somos una <span class="font-bold text-slate-900 dark:text-white">familia</span> que construye relaciones duraderas con clientes, colaboradores y la comunidad, buscando dejar una <span class="font-bold text-slate-900 dark:text-white">huella positiva</span> en todo lo que hacemos.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Segunda card: Tarjeta de la segunda dueña (orden visual responsive)
-         md:col-span-1 lg:col-span-1: ocupa 1 columna
-         md:order-3 lg:order-3: posición 3 en ambos breakpoints (derecha) -->
-    <div class="md:col-span-1 lg:col-span-1 md:order-3 lg:order-3">
-      <!-- Contenedor de la tarjeta del dueño -->
-      <!-- Componente Angular similar al primero, reutilizable con diferentes props -->
-      <app-card-duenio
-        foto="assets/img/duenia.jpg"
-        nombre="Beatriz Illescas Martín"
-        titulo="Abogada y Asesora de empresa"
-        imgClass="w-full h-auto object-cover bg-white hover:scale-105 transition-transform duration-300">
-      </app-card-duenio>
+    <!-- Valores -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
+      <div class="bg-stone-50 dark:bg-slate-800/80 dark:backdrop-blur-sm rounded-xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200 dark:border-slate-700/50" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-14 h-14 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
+          <span class="text-3xl">🤝</span>
+        </div>
+        <h4 class="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-3">Confianza</h4>
+        <p class="text-slate-600 dark:text-slate-300 text-sm lg:text-base leading-relaxed">
+          Construimos relaciones basadas en la transparencia y el compromiso con cada cliente.
+        </p>
+      </div>
+
+      <div class="bg-stone-50 dark:bg-slate-800/80 dark:backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200 dark:border-slate-700/50" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-14 h-14 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
+          <span class="text-3xl">⭐</span>
+        </div>
+        <h4 class="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-3">Excelencia</h4>
+        <p class="text-slate-600 dark:text-slate-300 text-sm lg:text-base leading-relaxed">
+          Nos esforzamos por superar las expectativas en cada transacción y servicio que ofrecemos.
+        </p>
+      </div>
+
+      <div class="bg-stone-50 dark:bg-slate-800/80 dark:backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-stone-200 dark:border-slate-700/50" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-14 h-14 bg-amber-500/10 dark:bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
+          <span class="text-3xl">💼</span>
+        </div>
+        <h4 class="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-3">Profesionalismo</h4>
+        <p class="text-slate-600 dark:text-slate-300 text-sm lg:text-base leading-relaxed">
+          Un equipo altamente capacitado que combina experiencia con innovación constante.
+        </p>
+      </div>
     </div>
 
-    <!-- Cronología: Sección timeline con fondo gradiente
-         md:col-span-2 lg:col-span-3: ocupa todo el ancho en todos los breakpoints
-         md:order-4: último elemento (posición 4)
-         bg-gradient-to-r: gradiente de izquierda a derecha (from-blue-100 to-blue-50)
-         rounded-2xl: bordes muy redondeados (radius grande)
-         p-4 sm:p-6 md:p-10: padding escalable para contenido interior
-         shadow-lg: sombra grande para profundidad (drop shadow) -->
-    <div class="md:col-span-2 lg:col-span-3 md:order-4 bg-gradient-to-r from-blue-100 to-blue-50 rounded-2xl p-4 sm:p-6 md:p-10 shadow-lg">
-      <!-- Componente Angular de cronología/timeline
-           Componente personalizado que renderiza hitos históricos -->
+    <!-- Cronología -->
+    <div class="bg-stone-50 dark:bg-slate-800/80 dark:backdrop-blur-sm rounded-2xl p-8 md:p-12 lg:p-16 shadow-xl border border-stone-200 dark:border-slate-700/50" data-aos="fade-up">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif italic text-center text-slate-900 dark:text-white mb-12 lg:mb-16 tracking-wide font-light" style="letter-spacing: 0.05em;">
+        Nuestra Trayectoria
+      </h2>
       <app-cronologia></app-cronologia>
     </div>
-
   </div>
 </div>
 

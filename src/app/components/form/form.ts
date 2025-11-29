@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmailService } from '../../services/emailService';
+import { ThemeService } from '../../services/theme.service';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './form.html',
   styleUrl: './form.css',
 })
 
 export class Form {
+  private themeService = inject(ThemeService);
+  isDarkMode = this.themeService.isDarkMode;
+  
   nombre = "";
   email = "";
   asunto = "";

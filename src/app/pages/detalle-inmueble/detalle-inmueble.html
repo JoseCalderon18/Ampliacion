@@ -1,0 +1,168 @@
+@if (casa) {
+  <div class="w-full min-h-screen" [ngClass]="{'bg-white': !isDarkMode(), 'bg-slate-900': isDarkMode()}">
+    <!-- Botón volver -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <a 
+        routerLink="/inmuebles"
+        class="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors mb-6">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Volver a inmuebles
+      </a>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Galería de imágenes -->
+        <div>
+          <div class="relative h-96 lg:h-[500px] rounded-xl overflow-hidden mb-4">
+            <img 
+              [src]="currentImage" 
+              [alt]="casa.titulo"
+              class="w-full h-full object-cover">
+            
+            @if (casa.imagenes && casa.imagenes.length > 1) {
+              <button 
+                (click)="prevImage()"
+                class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+              <button 
+                (click)="nextImage()"
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            }
+          </div>
+
+          <!-- Miniaturas -->
+          @if (casa.imagenes && casa.imagenes.length > 1) {
+            <div class="grid grid-cols-4 gap-2">
+              @for (img of casa.imagenes; track $index) {
+                <button 
+                  (click)="goToImage($index)"
+                  [class.ring-2]="currentImageIndex === $index"
+                  [class.ring-blue-500]="currentImageIndex === $index"
+                  class="h-20 rounded-lg overflow-hidden">
+                  <img [src]="img" [alt]="'Imagen ' + ($index + 1)" class="w-full h-full object-cover">
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Información del inmueble -->
+        <div>
+          <div class="mb-6">
+            <span [ngClass]="{'bg-blue-600 text-white': !isDarkMode(), 'bg-blue-900/30 text-blue-300': isDarkMode()}" class="px-4 py-2 rounded-full text-sm font-bold mb-4 inline-block">
+              {{ casa.tipo }}
+            </span>
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              {{ casa.titulo }}
+            </h1>
+            <p class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+              {{ casa.precio | number:'1.0-0' }} €
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 flex items-center gap-2 mb-6">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              {{ casa.direccion }}, {{ casa.ciudad }}, {{ casa.provincia }}
+            </p>
+          </div>
+
+          <!-- Características principales -->
+          <div [ngClass]="{'bg-white border border-slate-200': !isDarkMode(), 'bg-slate-800': isDarkMode()}" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-6 rounded-xl">
+            @if (casa.habitaciones > 0) {
+              <div class="text-center">
+                <div class="text-2xl font-bold text-slate-900 dark:text-white">{{ casa.habitaciones }}</div>
+                <div [ngClass]="{'text-slate-800': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="text-sm font-medium">Habitaciones</div>
+              </div>
+            }
+            @if (casa.banos > 0) {
+              <div class="text-center">
+                <div class="text-2xl font-bold text-slate-900 dark:text-white">{{ casa.banos }}</div>
+                <div [ngClass]="{'text-slate-800': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="text-sm font-medium">Baños</div>
+              </div>
+            }
+            @if (casa.metrosConstruidos > 0) {
+              <div class="text-center">
+                <div class="text-2xl font-bold text-slate-900 dark:text-white">{{ casa.metrosConstruidos }}</div>
+                <div [ngClass]="{'text-slate-800': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="text-sm font-medium">m² construidos</div>
+              </div>
+            }
+            @if (casa.terreno > 0) {
+              <div class="text-center">
+                <div class="text-2xl font-bold text-slate-900 dark:text-white">{{ casa.terreno }}</div>
+                <div [ngClass]="{'text-slate-800': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="text-sm font-medium">m² terreno</div>
+              </div>
+            }
+          </div>
+
+          <!-- Descripción -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Descripción</h2>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+              {{ casa.descripcion }}
+            </p>
+          </div>
+
+          <!-- Detalles adicionales -->
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Detalles</h2>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <span class="text-slate-600 dark:text-slate-400">Año construcción:</span>
+                <span class="text-slate-900 dark:text-white font-semibold ml-2">{{ casa.anoConstruccion || 'N/A' }}</span>
+              </div>
+              <div>
+                <span class="text-slate-600 dark:text-slate-400">Estado:</span>
+                <span class="text-slate-900 dark:text-white font-semibold ml-2">{{ casa.estado }}</span>
+              </div>
+              <div>
+                <span class="text-slate-600 dark:text-slate-400">Orientación:</span>
+                <span class="text-slate-900 dark:text-white font-semibold ml-2">{{ casa.orientacion }}</span>
+              </div>
+              <div>
+                <span class="text-slate-600 dark:text-slate-400">Plantas:</span>
+                <span class="text-slate-900 dark:text-white font-semibold ml-2">{{ casa.plantas }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extras -->
+          @if (casa.extras && casa.extras.length > 0) {
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Características especiales</h2>
+              <div class="flex flex-wrap gap-2">
+                @for (extra of casa.extras; track extra) {
+                  <span [ngClass]="{'bg-amber-600 text-white': !isDarkMode(), 'bg-amber-900/30 text-amber-300': isDarkMode()}" class="px-4 py-2 rounded-full text-sm font-bold">
+                    {{ extra }}
+                  </span>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- Botón de contacto -->
+          <a 
+            routerLink="/contacto"
+            class="block w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-lg text-center transition-all duration-200 transform hover:scale-105 active:scale-95">
+            Contactar sobre este inmueble
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="w-full min-h-screen flex items-center justify-center">
+    <p class="text-slate-600 dark:text-slate-400">Cargando...</p>
+  </div>
+}
+
