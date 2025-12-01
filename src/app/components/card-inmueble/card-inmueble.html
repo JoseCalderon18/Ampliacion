@@ -1,16 +1,23 @@
+<!-- Este componente se usa principalmente para tener casas, dispone de un Titulo, imagen y demas atributos. 
+ Se llama a este componente desde la pagina de inmuebles mediante un for con datos almacenados que se llaman en ese for. 
+ -->
 <div [ngClass]="{'bg-white border-slate-200': !isDarkMode(), 'bg-slate-800 border-slate-700': isDarkMode()}" class="rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border flex flex-col h-full">
-  <!-- Carrusel de imágenes -->
+<!-- Card de inmueble: contenedor.
+     Inputs esperados: `casa` (obj), props usados: `currentImage`, `currentImageIndex`.
+     Tema controlado por `isDarkMode()`; evitar lógica pesada en template. -->
+  <!-- Carrusel de imágenes: `currentImage` es propiedad del componente; controles visibles si hay varias imágenes -->
   <div class="relative h-64 overflow-hidden group flex-shrink-0">
+    <!-- Imagen principal bind a `currentImage` -->
     <img 
       [src]="currentImage" 
       [alt]="casa.titulo"
       class="w-full h-full object-cover transition-transform duration-500">
     
-    <!-- Botones del carrusel (solo si hay múltiples imágenes) -->
     @if (hasMultipleImages()) {
       <button 
         (click)="prevImage(); $event.stopPropagation()"
         class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+        <!-- Icono flecha izquierda -->
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
@@ -18,12 +25,17 @@
       <button 
         (click)="nextImage(); $event.stopPropagation()"
         class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+        <!-- Icono flecha derecha -->
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
       
-      <!-- Indicadores de imágenes -->
+       <!-- Indicadores: dot por cada imagen. `currentImageIndex` determina el estado activo;
+         idealmente el componente mantiene un índice y actualiza la vista sin operaciones pesadas. -->
+      <!-- Controles prev/next (visibles en hover).
+           Técnica: `prevImage()`/`nextImage()` deben actualizar `currentImageIndex` (mod length)
+           y asignar `currentImage`. Usar `$event.stopPropagation()` para aislar el evento. -->
       <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
         @for (img of casa.imagenes; track $index) {
           <div 
@@ -35,9 +47,9 @@
     }
   </div>
 
-  <!-- Contenido de la card -->
+  <!-- Contenido: tipo, precio, título, ubicación, características y CTA -->
   <div class="p-5 flex flex-col flex-grow">
-    <!-- Tipo y precio -->
+    <!-- Tipo y precio: etiqueta a la izquierda, precio a la derecha -->
     <div class="flex items-start justify-between mb-3">
       <span [ngClass]="{'bg-blue-600 text-white': !isDarkMode(), 'bg-blue-900/30 text-blue-300': isDarkMode()}" class="px-3 py-1 rounded-full text-xs font-bold">
         {{ casa.tipo }}
@@ -47,12 +59,13 @@
       </p>
     </div>
 
-    <!-- Título -->
+    <!-- Título del inmueble (puede truncarse en 2 líneas) -->
+    <!-- Título: usa `line-clamp-2` para truncar; mantener textos cortos para mejor legibilidad. -->
     <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 line-clamp-2">
       {{ casa.titulo }}
     </h3>
 
-    <!-- Ubicación -->
+    <!-- Ubicación: ciudad y provincia con icono -->
     <p [ngClass]="{'text-slate-700': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="text-sm mb-4 flex items-center gap-1">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -61,7 +74,10 @@
       {{ casa.ciudad }}, {{ casa.provincia }}
     </p>
 
-    <!-- Características -->
+        <!-- Características: habitaciones, baños y metros si existen. Render condicional para evitar
+          mostrar valores nulos/0; las comprobaciones se hacen en template para simplicidad. -->
+        <!-- Características: habitaciones/baños/metros. Render condicional evita valores 0/null;
+             mantener la comprobación simple en template para claridad. -->
     <div [ngClass]="{'text-slate-700': !isDarkMode(), 'text-slate-400': isDarkMode()}" class="flex flex-wrap gap-3 mb-4 text-sm">
       @if (casa.habitaciones > 0) {
         <span class="flex items-center gap-1">
@@ -89,7 +105,10 @@
       }
     </div>
 
-    <!-- Botón Saber más -->
+        <!-- CTA: navega a la página de detalle del inmueble. `onSaberMas()` puede emitir eventos o
+          realizar tracking antes de la navegación (routerLink). -->
+        <!-- CTA: navega al detalle (`routerLink`). `onSaberMas()` puede emitir evento y realizar
+             tracking previo a la navegación; mantener navegación con routerLink para SPA. -->
     <a 
       [routerLink]="['/inmuebles', casa.id]"
       (click)="onSaberMas()"

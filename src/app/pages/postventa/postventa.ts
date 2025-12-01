@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
 
+/*En esta página tenemos la logica del carrusel de la sección de postventa 
+En ese carrusel se encuentran diferentes testimonios que son presentados de manera interactiva y atractiva para los usuarios. 
+Esos testimonios son almacenados en un array dentro del componente. Cada 5 segundos cambia el testimonio mostrado.*/ 
 @Component({
   selector: 'app-postventa',
   standalone: true,
@@ -11,10 +14,12 @@ import { ThemeService } from '../../services/theme.service';
   styleUrls: ['./postventa.css'],
 })
 export class Postventa implements OnInit {
+  // Inyección del servicio de tema para gestionar el modo oscuro.
+
   private themeService = inject(ThemeService);
   isDarkMode = this.themeService.isDarkMode;
 
-  // Array de testimonios
+  // Array de testimonios con autor y texto correspondiente. Puedes agregar más testimonios si lo deseas añadiendo más objetos al array.
   testimonials = [
     {
       text: 'Gracias a esta inmobiliaria, encontramos la vivienda que buscábamos. El proceso fue fácil y transparente.',
@@ -38,11 +43,11 @@ export class Postventa implements OnInit {
     },
     {
       text: 'Un servicio excepcional, siempre dispuestos a ayudar y resolver cualquier duda. ¡Recomendados!',
-      author: 'Pedro Sánchez'
+      author: 'Pepe Sánchez'
     },
     {
       text: 'Nos sentimos muy apoyados durante todo el proceso de compra. La atención al cliente es de primera.',
-      author: 'Jose Maria gonzalez'
+      author: 'José María González'
     },
     {
       text: 'Gracias a su profesionalismo, encontramos la casa perfecta para nuestra familia. ¡Muy agradecidos!',
@@ -58,23 +63,23 @@ export class Postventa implements OnInit {
     },
   ];
 
-  currentIndex = 0; // Índice del testimonio actual
+  currentIndex = 0; // Índice del testimonio actual mostrado.
 
   constructor() { }
 
   ngOnInit(): void {
-    // Cambiar de testimonio automáticamente cada 5 segundos
+    // Cambiar de testimonio automáticamente cada 5 segundos con setInterval.
     setInterval(() => {
       this.nextTestimonial();
     }, 5000);
   }
 
-  // Cambia al testimonio anterior
+  // Cambia al testimonio anterior mostrado.
   prevTestimonial(): void {
     this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
   }
 
-  // Cambia al testimonio siguiente
+  // Cambia al testimonio siguiente mostrado.
   nextTestimonial(): void {
     this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
   }

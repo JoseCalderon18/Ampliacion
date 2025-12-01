@@ -1,4 +1,20 @@
+<!-- Sección de contacto. En esta sección, los usuarios pueden encontrar información sobre cómo ponerse en contacto con nosotros, incluyendo nuestro número de teléfono, dirección de correo electrónico y horarios de atención. 
+ Disponen de un formulario de contacto para enviar consultas directamente. Este formulario envia un correo
+ con todos los detalles de la consulta al gmail que se especifica en el componente. EL formulario esta almacenado en otro componente llamado form.
+ También se dispone de un mapa de google almacenado en un iframe. -->
+<!--
+  CONTENEDOR PRINCIPAL
+  - [ngClass]: Cambia entre modo oscuro y claro usando ThemeService de Angular.
+  - bg-gradient-to-b: Gradiente vertical de fondo (Tailwind).
+  - from-slate-800/to-slate-900: Colores para dark mode.
+  - from-white/to-slate-50: Colores para light mode.
+  - text-slate-100/text-slate-900: Color de texto según tema.
+  - py-4 md:py-12 lg:py-16: Padding vertical responsivo.
+  - px-4 sm:px-6 lg:px-8: Padding horizontal responsivo.
+  - min-h-screen: Ocupa al menos el alto de la pantalla.
+-->
 <div [ngClass]="isDarkMode() ? 'bg-gradient-to-b from-slate-800 to-slate-900 text-slate-100' : 'bg-gradient-to-b from-white to-slate-50 text-slate-900'" class="py-4 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 min-h-screen">
+
     <div class="max-w-7xl mx-auto">
         <!--Grid: Contacto a la izquierda, Formulario a la derecha-->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
@@ -108,6 +124,5 @@
                 </iframe>
             </div>
         </div>
-        
     </div>
 </div>

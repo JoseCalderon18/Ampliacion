@@ -1,25 +1,77 @@
+<!--Esta página corresponde a la sección de login y registro de usuarios, en ella distindimos dos areas funcionales, 
+la primera es el login y la segunda el registro. En el login se permite a los usuarios existentes ingresar a su cuenta, mientras que en el registro se les permite crear una nueva cuenta.
+En el registro se solicita información adicional como nombre, apellido y teléfono para crear el usuario. 
+Luego de logearse correctamente se mantendra el inicio de sesión iniciado con la posibilidad de 
+cerrar la sesión dandole al boton de salida arriba a la derecha. -->
+
+
+
+<!-- CONTENEDOR PRINCIPAL: Layout flex vertical centrado con fondo degradado responsivo
+     [ngClass]: Binding condicional - alterna tema oscuro/claro según isDarkMode()
+     bg-gradient-to-br: Tailwind - gradiente diagonal (arriba-izquierda a abajo-derecha)
+     from/via/to: Puntos de color del gradiente en tema claro/oscuro
+     p-3 sm:p-4: Padding responsivo (12px móvil → 16px tablet)
+     pt-12 sm:pt-16 md:pt-12: Top padding escalable por breakpoint
+     relative overflow-hidden: Contexto posicionamiento para elementos absolutos + clip decorativos
+-->
 <div [ngClass]="isDarkMode() ? 'bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800' : 'bg-gradient-to-br from-slate-50 via-white to-slate-100'" class="flex flex-col items-center justify-start p-3 sm:p-4 pt-12 sm:pt-16 md:pt-12 lg:pt-14 pb-6 lg:pb-10 relative overflow-hidden">
-  <!-- Elementos decorativos de fondo -->
+  
+  <!-- ELEMENTOS DECORATIVOS: 3 círculos blur (glassmorphism effect)
+       absolute + top/bottom/left/right: Posicionamiento independiente del flujo
+       blur-3xl/blur-2xl: Filtro CSS (48px y 36px) para desenfoque suave
+       rounded-full: border-radius 9999px = forma circular perfecta
+       bg-{color}-{intensity}/opacity: Opacidad baja (10-30%) para efecto sutil
+       z-index implícito: Quedan detrás por estar antes en DOM
+  -->
   <div [ngClass]="isDarkMode() ? 'bg-blue-500/10' : 'bg-blue-200/30'" class="absolute top-10 left-10 w-32 h-32 rounded-full blur-3xl"></div>
   <div [ngClass]="isDarkMode() ? 'bg-emerald-500/10' : 'bg-emerald-200/30'" class="absolute bottom-10 right-10 w-40 h-40 rounded-full blur-3xl"></div>
   <div [ngClass]="isDarkMode() ? 'bg-cyan-500/10' : 'bg-cyan-200/20'" class="absolute top-1/2 left-1/4 w-24 h-24 rounded-full blur-2xl"></div>
   
-  <!-- Texto informativo superior -->
+  <!-- ENCABEZADO: Logo empresa con animación AOS (Animate On Scroll)
+       data-aos="fade-down": Dispara animación al entra en viewport
+       relative z-10: Superpone decorativos (z-index mayor)
+       max-w-{breakpoint}: Ancho máximo por responsividad (2xl=28rem, 4xl=56rem, 6xl=72rem)
+       mb-4: Margin-bottom 16px (espaciado entre elementos)
+  -->
   <div class="w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl mb-4 text-center" data-aos="fade-down">
+    <!-- Interpolación Angular {{ }} - renderiza propiedades del componente -->
     <h1 [ngClass]="isDarkMode() ? 'text-white' : 'text-slate-800'" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Leyva e Illescas</h1>
     <p [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-600'" class="text-sm sm:text-base">Tu inmobiliaria de confianza desde 1998</p>
   </div>
   
+  <!-- TARJETA PRINCIPAL: Contenedor con dual-panel layout
+       backdrop-blur-sm: Mix-blend-mode + blur (2px) - efecto glassmorphism
+       rounded-2xl: border-radius 16px (esquinas suavizadas)
+       shadow-2xl: Sombra grande (0 25px 50px) para elevación visual
+       border: Línea 1px con color condicional por tema
+       overflow-hidden: Recorta contenido fuera de border-radius + esconde decorativos overflow
+  -->
   <div [ngClass]="isDarkMode() ? 'bg-slate-800/90 backdrop-blur-sm border-slate-700/50' : 'bg-white border-slate-200'" class="w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl rounded-2xl shadow-2xl overflow-hidden border relative">
-    <!-- Decoración superior -->
+    <!-- Decoración superior: línea gradiente sutil (separador visual)
+         h-1: alto 4px (línea fina)
+         absolute top-0 left-0 right-0: Posición fija arriba, ancho 100%
+    -->
     <div [ngClass]="isDarkMode() ? 'bg-gradient-to-r from-blue-600/20 to-emerald-600/20' : 'bg-gradient-to-r from-blue-100/50 to-emerald-100/50'" class="absolute top-0 left-0 right-0 h-1"></div>
     
-    <!-- Contenedor Principal -->
+    <!-- CONTENEDOR DUAL: Layout responsivo Flex
+         flex flex-col: Columna por defecto (móvil)
+         lg:flex-row: Fila en desktop (1024px+)
+         min-h-[600px]: Alto mínimo custom ([] = arbitrary value)
+    -->
     <div class="flex flex-col lg:flex-row min-h-[600px]">
       
-      <!-- Panel Izquierdo - Formularios -->
+      <!-- PANEL IZQUIERDO: Formularios (w-full móvil, lg:w-1/2 desktop = 50%)
+           p-6 sm:p-8 md:p-12: Padding escalable por breakpoint
+           flex items-center justify-center: Centra contenido vertical/horizontalmente
+           lg:min-h-[600px]: Alto mínimo en desktop (arbitrary value)
+      -->
       <div class="w-full lg:w-1/2 p-6 sm:p-8 md:p-12 flex items-center justify-center relative lg:min-h-[600px]">
-        <!-- Badge decorativo -->
+        <!-- Badge indicador con conditional rendering
+             @if (mostrarLogin) {...} @if (mostrarRegistro) {...}: Nueva sintaxis Angular 17+ control flow
+             absolute top-4 right-4: Posición fija en esquina superior derecha
+             [ngClass]: Binding - aplica clases dinámicamente según booleano
+             badge con ícono SVG: UI pattern común para indicadores de estado
+        -->
         <div [ngClass]="isDarkMode() ? 'bg-blue-600/20 text-blue-300 border-blue-500/30' : 'bg-blue-50 text-blue-700 border-blue-200'" class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold border backdrop-blur-sm">
           @if (mostrarLogin) {
             <span class="flex items-center gap-1.5">
@@ -38,25 +90,45 @@
             </span>
           }
         </div>        
-        <!-- Formulario Login -->
+        
+        <!-- FORMULARIO LOGIN: Control flow condicional @if
+             @if (mostrarLogin) { ... }: Renderiza SOLO si booleano es true (diferente a *ngIf)
+             data-aos="fade-right": Animación AOS - entra desde derecha
+             w-full max-w-md: Ancho 100% con máximo de 28rem (428px)
+        -->
         @if (mostrarLogin) {
-          <div class="w-full max-w-md"
-               data-aos="fade-right"
-               data-aos-duration="600">
+          <div class="w-full max-w-md" data-aos="fade-right" data-aos-duration="600">
             <div class="mb-6 sm:mb-8">
               <div class="flex items-center gap-3 mb-3">
+                <!-- Decoración: línea vertical gradiente (accent bar)
+                     w-1 h-8: 4px ancho × 32px alto
+                     bg-gradient-to-b: Gradiente vertical (top a bottom)
+                -->
                 <div class="w-1 h-8 bg-gradient-to-b from-blue-600 to-blue-700 rounded-full"></div>
                 <h2 [ngClass]="isDarkMode() ? 'text-white' : 'text-slate-800'" class="text-2xl sm:text-3xl md:text-3xl font-bold">Bienvenido</h2>
               </div>
               <p [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-600'" class="text-xs sm:text-sm md:text-base ml-4">Ingresa a tu cuenta de Leyva e Illescas</p>
             </div>
 
+            <!-- FORMULARIO HTML: (ngSubmit) event binding
+                 space-y-4 sm:space-y-6: Gap vertical entre elementos (16px → 24px)
+                 (ngSubmit)="onLogin()": Dispara método componente al submit
+            -->
             <form class="space-y-4 sm:space-y-6" (ngSubmit)="onLogin()">
+              <!-- ERROR MESSAGE: Condicional para mostrar errores
+                   @if (loginError): Renderiza solo si hay error
+                   Estilos rojo para feedback negativo (UX pattern estándar)
+              -->
               @if (loginError) {
                 <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300 px-4 py-3 rounded-lg text-xs sm:text-sm">
                   {{ loginError }}
                 </div>
               }
+              
+              <!-- CAMPO EMAIL: Pattern común - label + input con ícono
+                   label: Accesibilidad - asocia texto a input
+                   flex items-center gap-2: Alinea ícono + texto horizontalmente
+              -->
               <div>
                 <label [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-700'" class="block text-xs sm:text-sm font-medium mb-2 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,12 +136,28 @@
                   </svg>
                   Correo Electrónico
                 </label>
+                <!-- Contenedor relativo para posicionar ícono absolute
+                     relative: Contexto posicionamiento para children absolute
+                -->
                 <div class="relative">
+                  <!-- SVG ícono ABSOLUTO: Superpuesto sobre input
+                       absolute inset-y-0 left-0: Alto completo, alineado a la izquierda
+                       pl-3.5: Padding left 14px (espaciado desde borde)
+                       pointer-events-none: No interfiere con interacción del input
+                       z-10: Por encima del input (stackng order)
+                  -->
                   <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none z-10">
                     <svg [ngClass]="isDarkMode() ? 'text-slate-400' : 'text-gray-400'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                   </div>
+                  <!-- INPUT EMAIL: Two-way data binding
+                       [(ngModel)]="loginEmail": Banana-box syntax (read/write)
+                       pl-11: Padding-left 44px (espacio para ícono absoluto)
+                       focus:ring-2 focus:ring-blue-500: Anillo azul al enfocar (2px outline)
+                       focus:border-transparent: Borde oculto al enfocar (ring reemplaza)
+                       transition-all duration-200: Anima cambios en 200ms
+                  -->
                   <input 
                     type="email" 
                     [(ngModel)]="loginEmail"
@@ -81,6 +169,10 @@
                 </div>
               </div>
 
+              <!-- CAMPO CONTRASEÑA: Estructura idéntica a email
+                   type="password": Oculta caracteres ingresados
+                   focus:ring-blue-500: Mismo color ring que email (consistencia)
+              -->
               <div>
                 <label [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-700'" class="block text-xs sm:text-sm font-medium mb-2 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,36 +197,63 @@
                 </div>
               </div>
 
+              <!-- REMEMBER ME + FORGOT PASSWORD: Flex responsivo
+                   flex flex-col sm:flex-row: Columna móvil, fila tablet+
+                   justify-between: Distribuye elementos a los extremos
+              -->
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <!-- CHECKBOX: Control de formulario
+                     [(ngModel)]="rememberMe": Two-way binding booleano
+                     w-4 h-4: Tamaño 16×16px
+                -->
                 <label class="flex items-center cursor-pointer">
                   <input [(ngModel)]="rememberMe" type="checkbox" name="rememberMe" [ngClass]="isDarkMode() ? 'border-slate-600' : 'border-slate-300'" class="rounded border text-blue-600 focus:ring-blue-500 w-4 h-4">
                   <span [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-600'" class="ml-2 text-xs sm:text-sm">Recordarme</span>
                 </label>
+                <!-- LINK: Navegación (href="#" = placeholder) -->
                 <a href="#" [ngClass]="isDarkMode() ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'" class="text-xs sm:text-sm font-medium transition-colors">¿Olvidaste tu contraseña?</a>
               </div>
 
+              <!-- BOTÓN SUBMIT: Elemento interactivo principal
+                   type="submit": Dispara (ngSubmit) del form padre
+                   bg-gradient-to-r from-blue-600 to-blue-700: Gradiente izq a der (color visual)
+                   hover:from-blue-700 hover:to-blue-800: Gradiente más oscuro en hover (feedback)
+                   transform hover:scale-[1.02]: Agranda 2% al pasar mouse (microinteracción)
+                   shadow-lg hover:shadow-xl: Sombra aumenta en hover (efecto elevación)
+                   relative overflow-hidden group: Contexto para efecto shine overlay
+              -->
               <button 
                 type="submit"
                 class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 sm:py-3.5 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] text-xs sm:text-sm md:text-base relative overflow-hidden group">
+                <!-- Span con z-10 para estar encima del shine effect -->
                 <span class="relative z-10 flex items-center justify-center gap-2">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                   </svg>
                   Iniciar Sesión
                 </span>
+                <!-- SHINE EFFECT: Gradiente blanco que cruza button en hover
+                     absolute inset-0: Llena todo el botón
+                     from-transparent via-white/20 to-transparent: Gradiente con blanco 20% opacidad
+                     -translate-x-full: Inicia fuera a la izquierda (-100%)
+                     group-hover:translate-x-full: Cruza hacia derecha en hover (+100%)
+                     transition-transform duration-700: Anima en 700ms
+                -->
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </button>
             </form>
           </div>
         }
 
-        <!-- Formulario Registro -->
+        <!-- FORMULARIO REGISTRO: Estructura similar a LOGIN con grid responsivo
+             @if (mostrarRegistro): Renderiza cuando registración está activo
+             data-aos="fade-left": Entra desde izquierda (opuesto al login)
+        -->
         @if (mostrarRegistro) {
-          <div class="w-full max-w-md"
-               data-aos="fade-left"
-               data-aos-duration="600">
+          <div class="w-full max-w-md" data-aos="fade-left" data-aos-duration="600">
             <div class="mb-6 sm:mb-8">
               <div class="flex items-center gap-3 mb-3">
+                <!-- Accent bar esmeralda (diferente color que login = visual distinction) -->
                 <div class="w-1 h-8 bg-gradient-to-b from-emerald-600 to-emerald-700 rounded-full"></div>
                 <h2 [ngClass]="isDarkMode() ? 'text-white' : 'text-slate-800'" class="text-2xl sm:text-3xl md:text-3xl font-bold">Crear Cuenta</h2>
               </div>
@@ -147,7 +266,14 @@
                   {{ registroError }}
                 </div>
               }
+              <!-- GRID RESPONSIVO: Nombre y Apellido lado a lado en desktop
+                   grid grid-cols-1 sm:grid-cols-2: 1 columna móvil, 2 columnas tablet+ (640px)
+                   gap-3 sm:gap-4: Espaciado entre elementos (12px → 16px)
+              -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <!-- CAMPO NOMBRE: Input con ícono usuario
+                     Estructura idéntica a email/password pero con validación básica
+                -->
                 <div>
                   <label [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-700'" class="block text-xs sm:text-sm font-medium mb-2 flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,6 +297,7 @@
                       placeholder="Gonzalo">
                   </div>
                 </div>
+                <!-- CAMPO APELLIDO: Mismo patrón, en segunda columna -->
                 <div>
                   <label [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-700'" class="block text-xs sm:text-sm font-medium mb-2 flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -196,6 +323,7 @@
                 </div>
               </div>
 
+              <!-- CAMPO EMAIL: Full width, validación type="email" -->
               <div>
                 <label [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-700'" class="block text-xs sm:text-sm font-medium mb-2 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -220,6 +348,7 @@
                 </div>
               </div>
 
+              <!-- CAMPO TELÉFONO: type="tel" para validación móvil -->
               <div>
                 <label [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-700'" class="block text-xs sm:text-sm font-medium mb-2 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,6 +373,10 @@
                 </div>
               </div>
 
+              <!-- CAMPO CONTRASEÑA: Con validación minlength
+                   minlength="6": HTML5 validation - requiere mínimo 6 caracteres
+                   focus:ring-emerald-500: Color ring cambia a esmeralda (consistencia tema registro)
+              -->
               <div>
                 <label [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-700'" class="block text-xs sm:text-sm font-medium mb-2 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,6 +402,10 @@
                 </div>
               </div>
 
+              <!-- BOTÓN SUBMIT: Gradiente esmeralda (diferencia visual de login)
+                   Mismo patrón que botón login pero con colores esmeralda
+                   Asegura visual distinction entre dos actions primarias
+              -->
               <button 
                 type="submit"
                 class="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-3 sm:py-3.5 rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] text-xs sm:text-sm md:text-base relative overflow-hidden group">
@@ -285,28 +422,89 @@
         }
       </div>
 
-      <!-- Panel Derecho - Fondo Animado -->
+      <!-- PANEL DERECHO: Fondo animado (50% desktop, 100% móvil bajo)
+           w-full lg:w-1/2: Ancho completo móvil, 50% desktop
+           relative overflow-hidden: Contexto posicionamiento + clip de elementos absolutos
+           min-h-[400px] lg:min-h-[600px]: Alto mínimo responsivo (arbitrary values)
+      -->
       <div class="w-full lg:w-1/2 relative overflow-hidden min-h-[400px] lg:min-h-[600px]">
-        <!-- Fondo Login -->
+        <!-- FONDO LOGIN: Gradiente azul con elementos decorativos animados
+             @if (mostrarLogin): Renderiza panel SOLO cuando mostrarLogin es true
+             absolute inset-0: Posición fija (top/bottom/left/right = 0)
+             h-full: Alto 100% (llena todo el contenedor padre)
+             data-aos="fade-left": AOS animation - entra desde izquierda con fade
+             data-aos-duration="800": Duración animación 800ms
+        -->
         @if (mostrarLogin) {
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 flex items-center justify-center p-6 sm:p-12 relative overflow-hidden h-full"
-               data-aos="fade-left"
-               data-aos-duration="800">
-            <!-- Efectos decorativos -->
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 flex items-center justify-center p-6 sm:p-12 relative overflow-hidden h-full" data-aos="fade-left" data-aos-duration="800">
+            <!-- ELEMENTO DECORATIVO 1: Círculo blur en esquina superior derecha
+                 absolute top-0 right-0: Posición esquina arriba-derecha
+                 w-64 h-64: Tamaño 256×256px (grande)
+                 bg-blue-500/20: Color azul con 20% opacidad
+                 rounded-full blur-3xl: Forma circular + desenfoque 48px
+                 animate-pulse: Animación CSS pulsante (opacity)
+            -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+            <!-- ELEMENTO DECORATIVO 2: Círculo en esquina inferior izquierda
+                 animation-delay: 1s: Delay de 1 segundo en animación pulse
+                 (Crea efecto de "breathing" asincrónico entre elementos)
+            -->
             <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            <!-- ELEMENTO DECORATIVO 3: Círculo grande en el centro
+                 top-1/2 left-1/2 transform: Centra elemento (translateX/Y necesario con transform)
+                 -translate-x-1/2 -translate-y-1/2: Resta 50% ancho/alto (centra perfecto)
+                 w-96 h-96: Más grande que otros (384×384px)
+                 bg-blue-400/10: Opacidad muy baja (10%) para efecto muy sutil
+                 NO animate-pulse: Estático (solo los otros dos pulsan)
+            -->
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
             
+            <!-- CONTENIDO PRINCIPAL: Texto + iconografía centrada
+                 text-center: Alineación horizontal centrada
+                 text-white: Color texto blanco
+                 relative z-10: Por encima de elementos decorativos (z-index > 0)
+            -->
             <div class="text-center text-white relative z-10">
+              <!-- ICONO PRINCIPAL: Animado en hover
+                   mb-6 sm:mb-8: Margin-bottom responsivo (24px → 32px)
+                   transform hover:scale-110: Agranda 10% en hover (microinteracción)
+                   transition-transform duration-300: Anima scale en 300ms
+              -->
               <div class="mb-6 sm:mb-8 transform hover:scale-110 transition-transform duration-300">
+                <!-- SVG: w-16 sm:w-20 = 64px → 80px (responsivo)
+                     h-16 sm:h-20: Alto responsivo
+                     mx-auto: Centra horizontalmente (margin-left/right auto)
+                     mb-4 sm:mb-6: Margin-bottom escalable
+                     drop-shadow-lg: Filtro sombra para contraste en fondo gradiente
+                -->
                 <svg class="w-16 sm:w-20 h-16 sm:h-20 mx-auto mb-4 sm:mb-6 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                 </svg>
               </div>
+              <!-- HEADING: Multiline con saltos
+                   text-2xl sm:text-3xl md:text-4xl: Tamaño responsivo (24px → 36px)
+                   font-bold mb-4 sm:mb-6 leading-tight: Bold + margin + line-height comprimido
+                   drop-shadow-lg: Sombra para legibilidad sobre gradiente
+              -->
               <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 leading-tight drop-shadow-lg">Tu hogar<br>te espera</h3>
+              <!-- PÁRRAFO DESCRIPTIVO: Con marca de énfasis -->
               <p class="text-sm sm:text-base md:text-lg text-blue-100 mb-6 sm:mb-8 leading-relaxed">Encuentra la propiedad perfecta con<br><span class="font-semibold text-white">Leyva e Illescas</span></p>
+              
+              <!-- LISTA DE BENEFICIOS: Items con animación individual
+                   space-y-3: Gap vertical 12px entre items
+              -->
               <div class="space-y-3 mb-6 sm:mb-8">
+                <!-- ITEM BENEFICIO 1: Con ícono check
+                     flex items-center justify-center gap-2: Alinea horizontalmente
+                     text-blue-100 hover:text-white: Cambio color en hover
+                     transition-all duration-300 transform hover:scale-105: Múltiples animaciones
+                -->
                 <div class="flex items-center justify-center gap-2 text-blue-100 hover:text-white transition-all duration-300 transform hover:scale-105">
+                  <!-- BADGE CIRCULAR: Contenedor circular con ícono centrado
+                       p-1.5: Padding 6px
+                       bg-white/20: Blanco 20% opacidad (vidrioso)
+                       rounded-full: Forma circular perfecta
+                  -->
                   <div class="p-1.5 bg-white/20 rounded-full">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -314,6 +512,7 @@
                   </div>
                   <span class="text-sm font-medium">Acceso a propiedades exclusivas</span>
                 </div>
+                <!-- ITEM BENEFICIO 2: Estructura idéntica -->
                 <div class="flex items-center justify-center gap-2 text-blue-100 hover:text-white transition-all duration-300 transform hover:scale-105">
                   <div class="p-1.5 bg-white/20 rounded-full">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -323,6 +522,19 @@
                   <span class="text-sm font-medium">Asesoramiento personalizado</span>
                 </div>
               </div>
+              
+              <!-- CTA BUTTON: Cambiar a formulario registro
+                   px-6 sm:px-8 py-2.5 sm:py-3: Padding responsivo horizontal/vertical
+                   border-2 border-white: Borde blanco 2px (outline button style)
+                   text-white: Texto blanco
+                   rounded-lg: Bordes redondeados 8px
+                   font-semibold: Peso 600
+                   hover:bg-white hover:text-blue-600: Color invertido en hover (contrast)
+                   transition-all duration-300: Anima todos los cambios en 300ms
+                   transform hover:scale-105 active:scale-95: Scale en hover/active
+                   shadow-lg hover:shadow-xl: Sombra aumenta en hover
+                   (click)="cambiarARegistro()": Event binding - método en componente
+              -->
               <button 
                 (click)="cambiarARegistro()"
                 class="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl text-xs sm:text-sm md:text-base">
@@ -332,33 +544,76 @@
           </div>
         }
 
-        <!-- Fondo Registro -->
+        <!-- FONDO REGISTRO: Gradiente esmeralda (estructura idéntica a login)
+             Diferencia principal: colores esmeralda vs azul
+             Esto proporciona visual distinction clara entre dos estados
+        -->
         @if (mostrarRegistro) {
-          <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 flex items-center justify-center p-6 sm:p-12 relative overflow-hidden h-full"
-               data-aos="fade-right"
-               data-aos-duration="800">
-            <!-- Efectos decorativos -->
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 flex items-center justify-center p-6 sm:p-12 relative overflow-hidden h-full" data-aos="fade-right" data-aos-duration="800">
+            <!-- ELEMENTOS DECORATIVOS: Misma estructura que login, colores esmeralda/teal
+                 Responsables del efecto visual glassmorphism con blur y opacity
+                 Se animan asincrónicamene (animation-delay: 1s en el segundo)
+            -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
             <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl"></div>
             
+            <!-- CONTENIDO: Mismo layout que login con iconografía registro -->
             <div class="text-center text-white relative z-10">
+              <!-- ICONO PRINCIPAL: Icono de llave/seguridad (diferente del login de casa)
+                   mb-6 sm:mb-8: Margin-bottom responsivo
+                   transform hover:scale-110: Escala en hover (microinteracción)
+                   transition-transform duration-300: Anima scale suavemente
+              -->
               <div class="mb-6 sm:mb-8 transform hover:scale-110 transition-transform duration-300">
+                <!-- SVG: Icono de búsqueda/llave - indica búsqueda de propiedades
+                     w-16 sm:w-20 h-16 sm:h-20: Tamaño responsivo (64px → 80px)
+                     mx-auto: Centra horizontalmente
+                     drop-shadow-lg: Sombra para contraste sobre gradiente
+                -->
                 <svg class="w-16 sm:w-20 h-16 sm:h-20 mx-auto mb-4 sm:mb-6 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
                 </svg>
               </div>
+              <!-- HEADING: Call-to-action clara para registro
+                   text-2xl sm:text-3xl md:text-4xl: Tamaño responsivo (escala 24px → 36px)
+                   font-bold mb-4 sm:mb-6 leading-tight: Peso 700, margin, line-height comprimido
+                   drop-shadow-lg: Filtro CSS para sombra de texto (mejora legibilidad)
+              -->
               <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 leading-tight drop-shadow-lg">Comienza tu<br>búsqueda hoy</h3>
+              <!-- PÁRRAFO DESCRIPTIVO: Con énfasis final
+                   text-emerald-100: Color esmeralda muy claro (opacidad para contraste)
+                   leading-relaxed: Line-height 1.625 para mejor lectura
+              -->
               <p class="text-sm sm:text-base md:text-lg text-emerald-100 mb-6 sm:mb-8 leading-relaxed">Accede a las mejores propiedades<br><span class="font-semibold text-white">de toda España</span></p>
+              
+              <!-- LISTA DE BENEFICIOS: Items específicos para registro (no iguales que login)
+                   space-y-3: Gap vertical 12px entre items (evita compresión)
+              -->
               <div class="space-y-3 mb-6 sm:mb-8">
+                <!-- BENEFICIO 1: Proceso simple
+                     flex items-center justify-center: Centra elementos verticalmente
+                     gap-2: Espaciado 8px entre ícono y texto
+                     text-emerald-100 hover:text-white: Cambio color en hover (feedback)
+                     transform hover:scale-105: Agranda 5% en hover
+                -->
                 <div class="flex items-center justify-center gap-2 text-emerald-100 hover:text-white transition-all duration-300 transform hover:scale-105">
+                  <!-- BADGE CIRCULAR: Icono dentro de círculo vidrioso
+                       p-1.5: Padding 6px (espacio interno)
+                       bg-white/20: Blanco con 20% opacidad (efecto glacial)
+                       rounded-full: Círculo perfecto
+                  -->
                   <div class="p-1.5 bg-white/20 rounded-full">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                   </div>
+                  <!-- TEXTO: Beneficio de registro rápido -->
                   <span class="text-sm font-medium">Registro rápido y sencillo</span>
                 </div>
+                <!-- BENEFICIO 2: Notificaciones automáticas
+                     Misma estructura que beneficio 1
+                -->
                 <div class="flex items-center justify-center gap-2 text-emerald-100 hover:text-white transition-all duration-300 transform hover:scale-105">
                   <div class="p-1.5 bg-white/20 rounded-full">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -368,6 +623,18 @@
                   <span class="text-sm font-medium">Notificaciones de nuevas propiedades</span>
                 </div>
               </div>
+              
+              <!-- CTA BUTTON: Retornar a login
+                   px-6 sm:px-8 py-2.5 sm:py-3: Padding responsivo (aumenta en pantallas mayores)
+                   border-2 border-white: Borde blanco 2px (outline button pattern)
+                   text-white rounded-lg: Texto blanco, bordes redondeados 8px
+                   font-semibold: Peso 600 para énfasis
+                   hover:bg-white hover:text-emerald-600: Invierte colores en hover
+                   transition-all duration-300: Anima todos los cambios en 300ms
+                   transform hover:scale-105 active:scale-95: Scale enlarge/shrink
+                   shadow-lg hover:shadow-xl: Sombra profunda, aumenta en hover
+                   (click)="cambiarALogin()": Event binding - cambia a mostrarLogin boolean
+              -->
               <button 
                 (click)="cambiarALogin()"
                 class="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-emerald-600 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl text-xs sm:text-sm md:text-base">
@@ -379,35 +646,111 @@
       </div>
     </div>
     
-    <!-- Pie de página informativo -->
+    <!-- FOOTER: Información de seguridad y características (badges informativos)
+         PROPÓSITO: Incrementar confianza del usuario mostrando ventajas clave
+         px-6 py-4: Padding responsivo (interno 24px horizontal, 16px vertical)
+         border-t: Línea divisoria superior para separación visual
+         [ngClass] binding: Cambia color según tema (dark/light) - ANGULAR BINDING
+    -->
     <div [ngClass]="isDarkMode() ? 'bg-slate-700/50 border-t border-slate-600' : 'bg-slate-50 border-t border-slate-200'" class="px-6 py-4 border-t">
+      <!-- CONTENEDOR BADGES: Flex layout responsivo
+           flex flex-col sm:flex-row: Apilado móvil, horizontal ≥640px
+           items-center justify-center: Centra contenido vertical/horizontalmente
+           gap-4 sm:gap-8: Espaciado 16px móvil → 32px desktop
+           text-center: Alineación texto centrada
+      -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-center">
+        
+        <!-- BADGE 1: Seguridad de datos
+             flex items-center gap-2: Icono + texto horizontal, centrado
+             gap-2: Espacio 8px entre icono y texto
+        -->
         <div class="flex items-center gap-2">
+          <!-- SVG ICON: Shield seguridad
+               [ngClass] binding: Color dinámico según tema (ANGULAR data binding)
+               isDarkMode() ? 'text-blue-400' : 'text-blue-600': Condición ternaria
+               w-5 h-5: Tamaño 20×20px (icono pequeño)
+               stroke="currentColor": Hereda color del elemento padre
+          -->
           <svg [ngClass]="isDarkMode() ? 'text-blue-400' : 'text-blue-600'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- PATH: Icono de escudo con checkmark
+                 stroke-linecap="round" stroke-linejoin="round": Bordes suaves SVG
+                 stroke-width="2": Grosor del trazo 2px
+                 d="..." path data: Define geometría del icono
+            -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
           </svg>
+          <!-- TEXTO BADGE: Etiqueta corta descriptiva
+               [ngClass] binding: Color tema (slate-300 dark, slate-600 light)
+               text-xs sm:text-sm: Tamaño responsivo (12px → 14px)
+          -->
           <span [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-600'" class="text-xs sm:text-sm">Datos protegidos</span>
         </div>
+        
+        <!-- BADGE 2: Velocidad de registro
+             flex items-center gap-2: Layout horizontal icono + texto
+        -->
         <div class="flex items-center gap-2">
+          <!-- SVG ICON: Reloj/timer velocidad
+               [ngClass] binding: Color esmeralda según tema
+               Color estratégico: Indica "rápido" = verde/esmeralda
+          -->
           <svg [ngClass]="isDarkMode() ? 'text-emerald-400' : 'text-emerald-600'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- PATH: Icono de reloj circular
+                 Comunica concepto de velocidad/tiempo
+            -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
+          <!-- TEXTO: Descripción beneficio de velocidad -->
           <span [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-600'" class="text-xs sm:text-sm">Registro rápido</span>
         </div>
+        
+        <!-- BADGE 3: Soporte 24/7
+             flex items-center gap-2: Layout horizontal
+        -->
         <div class="flex items-center gap-2">
+          <!-- SVG ICON: Personas/soporte
+               [ngClass] binding: Color cyan para diferenciación visual
+               3 colores diferentes (blue, emerald, cyan) = 3 características distintas
+          -->
           <svg [ngClass]="isDarkMode() ? 'text-cyan-400' : 'text-cyan-600'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- PATH: Icono múltiples personas (representa equipo/soporte)
+                 Sugiere disponibilidad de help desk/customer service
+            -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
           </svg>
+          <!-- TEXTO: Descripción soporte continuo -->
           <span [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-slate-600'" class="text-xs sm:text-sm">Soporte 24/7</span>
         </div>
       </div>
     </div>
   </div>
   
-  <!-- Texto adicional inferior -->
+  <!-- ENLACE INFERIOR: Soporte/Contacto con animación
+       PROPÓSITO: Proporciona CTA secundaria para usuarios que necesitan asistencia
+       w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl: Ancho responsivo con constraints
+       mt-4: Margin-top 16px (separación del footer badges)
+       text-center: Alineación centrada
+       relative z-10: Apila sobre otros elementos (z-index: 10)
+       data-aos="fade-up": Animación entrada desde abajo (AOS library)
+  -->
   <div class="w-full max-w-2xl sm:max-w-4xl lg:max-w-6xl mt-4 text-center relative z-10" data-aos="fade-up">
+    <!-- PÁRRAFO: Texto pequeño con enlace interactivo
+         [ngClass] binding: Color tema (slate-400 dark, slate-500 light)
+         text-xs sm:text-sm: Tamaño responsivo (12px → 14px)
+    -->
     <p [ngClass]="isDarkMode() ? 'text-slate-400' : 'text-slate-500'" class="text-xs sm:text-sm">
-      ¿Necesitas ayuda? <a [ngClass]="isDarkMode() ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'" href="#" class="font-medium underline">Contáctanos</a>
+      ¿Necesitas ayuda? 
+      <!-- ENLACE: CTA para contacto con diseño interactivo
+           [ngClass] binding: Color dinámico + hover state
+           isDarkMode() ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
+           EXPLICACIÓN DE COLORES:
+           - Dark: blue-400 base (luminoso), hover:blue-300 (más luminoso = más visible)
+           - Light: blue-600 base (oscuro), hover:blue-700 (más oscuro = énfasis)
+           font-medium: Peso 500 para diferenciación
+           underline: Línea subrayada = estándar de enlace web
+      -->
+      <a [ngClass]="isDarkMode() ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'" href="contacto" class="font-medium underline">Contáctanos</a>
     </p>
   </div>
 </div>
