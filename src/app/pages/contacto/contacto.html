@@ -1,9 +1,9 @@
 <div [ngClass]="isDarkMode() ? 'bg-gradient-to-b from-slate-800 to-slate-900 text-slate-100' : 'bg-gradient-to-b from-white to-slate-50 text-slate-900'" class="py-4 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 min-h-screen">
     <div class="max-w-7xl mx-auto">
-        <!--Grid-->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <!--Informacion y horario-->
-            <div>
+        <!--Grid: Contacto a la izquierda, Formulario a la derecha-->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 items-start">
+            <!--Informacion de contacto (IZQUIERDA)-->
+            <div class="h-full">
               <h3 [ngClass]="isDarkMode() ? 'text-white' : 'text-slate-900'" class="text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-widest uppercase font-medium mb-3 relative">
                 <span [ngClass]="isDarkMode() ? 'bg-slate-400' : 'bg-blue-600'" class="absolute left-0 top-1/2 w-8 h-px transform -translate-y-1/2"></span>
                 <span class="pl-10">Contactanos</span></h3>
@@ -86,18 +86,22 @@
                     </div>
                 </div> 
               </div>
-            <app-form></app-form>
+            
+            <!--Formulario (DERECHA)-->
+            <div class="h-full flex">
+                <app-form class="w-full"></app-form>
+            </div>
         </div> 
 
-        <!--Mapa con animacion AOS-->
-        <div>
+        <!--Mapa abajo ocupando todo el ancho-->
+        <div class="w-full">
             <h3 [ngClass]="isDarkMode() ? 'text-white' : 'text-slate-900'" class="text-xl sm:text-2xl md:text-3xl tracking-widest uppercase font-medium mb-3 relative">
                 <span [ngClass]="isDarkMode() ? 'bg-slate-400' : 'bg-blue-600'" class="absolute left-0 top-1/2 w-8 h-px transform -translate-y-1/2"></span>
                 <span class="pl-10">Encuentranos</span>
             </h3>
             <!-- Mapa de Google Maps -->
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
-                [ngClass]="isDarkMode() ? 'border-slate-600' : 'border-slate-300'" class="w-full border-t my-8 h-[20em] sm:h-[24em] md:h-[28em]">
+                [ngClass]="isDarkMode() ? 'border-slate-600' : 'border-slate-300'" class="w-full border-t my-8 h-[20em] sm:h-[24em] md:h-[28em] lg:h-[32em]">
                 <iframe class="w-full h-full rounded-lg shadow-xl border-0"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24465.327852073246!2d-4.849240611870231!3d39.960041577029344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd401c8ed0fe010d%3A0x1a24f99d9c20899d!2s45600%20Talavera%20de%20la%20Reina%2C%20Toledo!5e0!3m2!1ses!2ses!4v1763465885873!5m2!1ses!2ses"
                     style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>

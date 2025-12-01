@@ -1,10 +1,10 @@
 <div data-aos="fade-left" data-aos-duration="800"
-    [ngClass]="isDarkMode() ? 'bg-slate-700/80 backdrop-blur-sm border-slate-400' : 'bg-white border-blue-500'" class="p-4 sm:p-5 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4">
+    [ngClass]="isDarkMode() ? 'bg-slate-700/80 backdrop-blur-sm border-slate-400' : 'bg-white border-blue-500'" class="p-4 sm:p-5 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 h-full flex flex-col">
     <h2 [ngClass]="isDarkMode() ? 'text-white' : 'text-verde'" class="text-lg sm:text-xl md:text-2xl font-display-CormorantGaramond font-bold mb-3">Contáctanos</h2>
     <!-- pequeña decoracion -->
     <div [ngClass]="isDarkMode() ? 'bg-green-600' : 'bg-blue-500'" class="mx-auto w-16 h-1 rounded mt-2 mb-1" aria-hidden="true"></div>
         <p [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-gray-500'" class="text-xs sm:text-sm text-center mb-4">Respondemos en menos de 24 horas</p>
-        <form class="space-y-1 text-center" id="formularioContacto" (ngSubmit)="enviarEmail()">
+        <form class="space-y-1 text-center flex-grow flex flex-col" id="formularioContacto" (ngSubmit)="enviarEmail()">
             <input [(ngModel)]="nombre" type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre"
                 [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
                 class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
@@ -21,7 +21,7 @@
             </select>
             <textarea [(ngModel)] = "mensaje" name="mensaje" id="mensaje" rows="6" sm:rows="7" md:rows="8" placeholder="Introduce tu mensaje"
                 [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
-                class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md flex-grow focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"></textarea>
+                class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md flex-grow min-h-[120px] focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none resize-none"></textarea>
             <div class="flex justify-center">
             <button type="submit" id="btnEnviar"
                 [ngClass]="isDarkMode() ? 'bg-green-600 hover:bg-green-700' : 'bg-green-600 hover:bg-green-700'"

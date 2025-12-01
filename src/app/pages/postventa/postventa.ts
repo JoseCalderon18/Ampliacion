@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-postventa',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './postventa.html',
   styleUrls: ['./postventa.css'],
 })
