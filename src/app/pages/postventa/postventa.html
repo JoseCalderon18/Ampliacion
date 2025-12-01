@@ -212,9 +212,9 @@
       <!-- hover:bg-blue-700: Color más oscuro al pasar cursor -->
       <!-- transition-all duration-300: Animación suave de 300ms en todos los cambios -->
       <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-3 rounded-full shadow-lg focus:outline-none transition-all duration-300 -ml-4 sm:-ml-6" 
-        (click)="prevTestimonial()">
+        (click)="prevTestimonial()" aria-label="Testimonio anterior">
         <!-- SVG FLECHA IZQUIERDA: Ícono de navegación anterior -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-5 h-5 sm:w-6 sm:h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
       </button>
@@ -224,9 +224,9 @@
       <!-- absolute top-1/2 right-0: Posicionamiento a la derecha en lugar de izquierda -->
       <!-- -mr-4 sm:-mr-6: Margen negativo derecha (efecto flotante derecho) -->
       <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 p-3 rounded-full shadow-lg focus:outline-none transition-all duration-300 -mr-4 sm:-mr-6"
-        (click)="nextTestimonial()">
+        (click)="nextTestimonial()" aria-label="Testimonio siguiente">
         <!-- SVG FLECHA DERECHA: Ícono de navegación siguiente -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-5 h-5 sm:w-6 sm:h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" class="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
       </button>
@@ -339,7 +339,7 @@
       <!-- rounded-sm: Bordes ligeramente redondeados (efecto moderno) -->
       <!-- transition duration-300: Animación suave al cambio de estado -->
       <!-- inline-block: Ajusta ancho al contenido, permite padding -->
-      <a routerLink="/contacto" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-sm transition duration-300 inline-block">
+      <a routerLink="/contacto" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-sm transition duration-300 inline-block" aria-label="Ir a la página de contacto">
         Contactanos
       </a>
     </div>
