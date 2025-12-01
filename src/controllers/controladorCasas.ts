@@ -230,7 +230,7 @@ export class CasasController {
       anoConstruccion: 2012,
       estado: "Muy buen estado",
       extras: ["Piscina", "Jardín", "Garaje", "Porche"],
-      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg"]
     },
     {
       titulo: "Duplex en zona exclusiva",
@@ -305,7 +305,7 @@ export class CasasController {
       anoConstruccion: 2014,
       estado: "Muy buen estado",
       extras: ["Terraza", "Vistas al mar", "Ascensor", "Parking"],
-      imagenes: ["assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg"]
+      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
     },
     {
       titulo: "Villa moderna con piscina",
@@ -330,7 +330,7 @@ export class CasasController {
       anoConstruccion: 2020,
       estado: "Excelente estado",
       extras: ["Piscina", "Jardín", "Garaje", "Domótica"],
-      imagenes: ["assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg", "assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg"]
     },
     {
       titulo: "Ático con vistas panorámicas",
@@ -355,7 +355,7 @@ export class CasasController {
       anoConstruccion: 2017,
       estado: "Muy buen estado",
       extras: ["Terraza", "Vistas", "Ascensor", "Trastero"],
-      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
+      imagenes: ["assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg"]
     },
     {
       titulo: "Casa adosada con jardín",
@@ -405,7 +405,7 @@ export class CasasController {
       anoConstruccion: 1999,
       estado: "Reformado",
       extras: ["Ascensor", "Trastero"],
-      imagenes: ["assets/img/inicio4.jpeg", "assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg"]
+      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
     },
     {
       titulo: "Chalet independiente de lujo",
@@ -430,7 +430,7 @@ export class CasasController {
       anoConstruccion: 2021,
       estado: "Nuevo",
       extras: ["Piscina", "Jardín", "Garaje", "Domótica", "Sala de cine"],
-      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg"]
     },
     {
       titulo: "Estudio funcional en el centro",
@@ -530,7 +530,7 @@ export class CasasController {
       anoConstruccion: 2006,
       estado: "Reformado",
       extras: ["Balcón", "Ascensor", "Trastero"],
-      imagenes: ["assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg"]
+      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
     },
     {
       titulo: "Chalet con jardín y piscina",
@@ -555,7 +555,7 @@ export class CasasController {
       anoConstruccion: 2014,
       estado: "Muy buen estado",
       extras: ["Piscina", "Jardín", "Garaje", "Trastero"],
-      imagenes: ["assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg"]
     },
     {
       titulo: "Ático con terraza panorámica",
@@ -580,7 +580,7 @@ export class CasasController {
       anoConstruccion: 2019,
       estado: "Excelente estado",
       extras: ["Terraza", "Vistas", "Ascensor", "Parking"],
-      imagenes: ["assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg", "assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg"]
+      imagenes: ["assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg"]
     },
     {
       titulo: "Casa adosada con garaje",
@@ -630,7 +630,7 @@ export class CasasController {
       anoConstruccion: 2020,
       estado: "Nuevo",
       extras: ["Piscina", "Jardín", "Garaje", "Domótica", "Vistas al mar"],
-      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg", "assets/img/inicio5.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg"]
     },
     {
       titulo: "Piso reformado en el centro",
@@ -655,7 +655,7 @@ export class CasasController {
       anoConstruccion: 1994,
       estado: "Reformado",
       extras: ["Ascensor", "Trastero"],
-      imagenes: ["assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg"]
+      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
     },
     {
       titulo: "Finca rústica con viñedos",
@@ -730,7 +730,7 @@ export class CasasController {
       anoConstruccion: 2018,
       estado: "Excelente estado",
       extras: ["Piscina", "Jardín", "Garaje", "Domótica"],
-      imagenes: ["assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg"]
     },
     {
       titulo: "Piso con balcón en primera línea",
@@ -755,7 +755,7 @@ export class CasasController {
       anoConstruccion: 2012,
       estado: "Muy buen estado",
       extras: ["Balcón", "Vistas al mar", "Ascensor", "Parking"],
-      imagenes: ["assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg"]
+      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
     },
     {
       titulo: "Casa rústica con encanto",
@@ -830,7 +830,7 @@ export class CasasController {
       anoConstruccion: 2016,
       estado: "Excelente estado",
       extras: ["Piscina", "Jardín", "Garaje", "Porche"],
-      imagenes: ["assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg", "assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg"]
     },
     {
       titulo: "Piso céntrico reformado",
@@ -880,7 +880,7 @@ export class CasasController {
       anoConstruccion: 2021,
       estado: "Nuevo",
       extras: ["Piscina", "Jardín", "Garaje", "Domótica", "Vistas"],
-      imagenes: ["assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg", "assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg"]
     },
     {
       titulo: "Estudio funcional en el centro",
@@ -955,7 +955,7 @@ export class CasasController {
       anoConstruccion: 2018,
       estado: "Excelente estado",
       extras: ["Piscina", "Jardín", "Garaje", "Porche"],
-      imagenes: ["assets/img/inicio4.jpeg", "assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg"]
     },
     {
       titulo: "Ático con terraza y vistas",
@@ -980,7 +980,7 @@ export class CasasController {
       anoConstruccion: 2017,
       estado: "Muy buen estado",
       extras: ["Terraza", "Vistas", "Ascensor", "Trastero"],
-      imagenes: ["assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg"]
+      imagenes: ["assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg"]
     },
     {
       titulo: "Casa adosada con jardín",
@@ -1030,7 +1030,7 @@ export class CasasController {
       anoConstruccion: 2014,
       estado: "Muy buen estado",
       extras: ["Terraza", "Vistas al mar", "Ascensor", "Parking"],
-      imagenes: ["assets/img/inicio5.jpeg", "assets/img/inicio6.jpeg", "assets/img/inicio7.jpeg"]
+      imagenes: ["assets/img/inicio7.jpeg", "assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg"]
     },
     {
       titulo: "Villa moderna con piscina",
@@ -1055,7 +1055,7 @@ export class CasasController {
       anoConstruccion: 2020,
       estado: "Excelente estado",
       extras: ["Piscina", "Jardín", "Garaje", "Domótica"],
-      imagenes: ["assets/img/inicio8.jpeg", "assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg"]
+      imagenes: ["assets/img/inicio1.jpeg", "assets/img/inicio2.jpeg", "assets/img/inicio3.jpeg", "assets/img/inicio4.jpeg"]
     }
   ];
 
