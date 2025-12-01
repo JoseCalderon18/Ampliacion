@@ -1,28 +1,55 @@
+<!--Seccion de formulario. En este formulario se rellena la consulta de contacto con los datos. 
+Los datos son: nombre, email, asunto y mensaje.
+Este mensaje se envia mediante EmailJS a la direccion de correo especificada.
+-->
+<!--
+  CONTENEDOR PRINCIPAL DEL FORMULARIO
+  - data-aos="fade-left": Animación de entrada desde la izquierda (AOS library)
+  - [ngClass]: Cambia fondo, borde y blur según modo oscuro/claro (ThemeService)
+  - bg-slate-700/80: Fondo translúcido dark mode
+  - border-l-4: Borde izquierdo destacado
+  - rounded-lg, shadow-md: Esquinas redondeadas y sombra
+  - hover:shadow-xl: Sombra animada en hover
+-->
 <div data-aos="fade-left" data-aos-duration="800"
     [ngClass]="isDarkMode() ? 'bg-slate-700/80 backdrop-blur-sm border-slate-400' : 'bg-white border-blue-500'" class="p-4 sm:p-5 md:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4">
+    <!-- TÍTULO DEL FORMULARIO -->
     <h2 [ngClass]="isDarkMode() ? 'text-white' : 'text-verde'" class="text-lg sm:text-xl md:text-2xl font-display-CormorantGaramond font-bold mb-3">Contáctanos</h2>
-    <!-- pequeña decoracion -->
+    <!-- DECORACIÓN: Línea de color bajo el título -->
     <div [ngClass]="isDarkMode() ? 'bg-green-600' : 'bg-blue-500'" class="mx-auto w-16 h-1 rounded mt-2 mb-1" aria-hidden="true"></div>
-        <p [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-gray-500'" class="text-xs sm:text-sm text-center mb-4">Respondemos en menos de 24 horas</p>
-        <form class="space-y-1 text-center" id="formularioContacto" (ngSubmit)="enviarEmail()">
-            <input [(ngModel)]="nombre" type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre"
-                [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
-                class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
-            <input [(ngModel)]="email" type="email" id="email" name="email" placeholder="Introduce tu email"
-                [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
-                class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
-            <select [(ngModel)]="asunto" name="asunto" id="asunto"
-                [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white' : 'bg-white border-gray-300 text-slate-900'"
-                class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
-                <option value="" disabled selected class="text-xs sm:text-sm">Selecciona un asunto</option>
-                <option value="1" class="text-xs sm:text-sm">Solicitar Información</option>
-                <option value="2" class="text-xs sm:text-sm">Consulta sobre algún Inmueble</option>
-                <option value="3" class="text-xs sm:text-sm">Otro</option>
-            </select>
-            <textarea [(ngModel)] = "mensaje" name="mensaje" id="mensaje" rows="6" sm:rows="7" md:rows="8" placeholder="Introduce tu mensaje"
-                [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
-                class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md flex-grow focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"></textarea>
-            <div class="flex justify-center">
+    <!-- SUBTÍTULO: Tiempo de respuesta -->
+    <p [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-gray-500'" class="text-xs sm:text-sm text-center mb-4">Respondemos en menos de 24 horas</p>
+    <!--
+      FORMULARIO DE CONTACTO
+      - (ngSubmit)="enviarEmail()": Llama al método enviarEmail() del componente al enviar.
+      - id="formularioContacto": Para referencia JS/test.
+      - space-y-1: Espaciado vertical entre campos.
+      - text-center: Centra el contenido.
+    -->
+    <form class="space-y-1 text-center" id="formularioContacto" (ngSubmit)="enviarEmail()">
+        <!-- CAMPO NOMBRE -->
+        <input [(ngModel)]="nombre" type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre"
+            [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
+            class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+        <!-- CAMPO EMAIL (HTML5 type=email para validación nativa) -->
+        <input [(ngModel)]="email" type="email" id="email" name="email" placeholder="Introduce tu email"
+            [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
+            class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+        <!-- SELECT ASUNTO: Opciones traducidas en TypeScript -->
+        <select [(ngModel)]="asunto" name="asunto" id="asunto"
+            [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white' : 'bg-white border-gray-300 text-slate-900'"
+            class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+            <option value="" disabled selected class="text-xs sm:text-sm">Selecciona un asunto</option>
+            <option value="1" class="text-xs sm:text-sm">Solicitar Información</option>
+            <option value="2" class="text-xs sm:text-sm">Consulta sobre algún Inmueble</option>
+            <option value="3" class="text-xs sm:text-sm">Otro</option>
+        </select>
+        <!-- CAMPO MENSAJE: Textarea con binding y validación -->
+        <textarea [(ngModel)] = "mensaje" name="mensaje" id="mensaje" rows="6" sm:rows="7" md:rows="8" placeholder="Introduce tu mensaje"
+            [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
+            class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md flex-grow focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"></textarea>
+        <!-- BOTÓN ENVIAR: Centrado, color dinámico, animaciones de interacción -->
+        <div class="flex justify-center">
             <button type="submit" id="btnEnviar"
                 [ngClass]="isDarkMode() ? 'bg-green-600 hover:bg-green-700' : 'bg-green-600 hover:bg-green-700'"
                 class="h-full text-white font-semibold py-2 sm:py-3 px-2 md:px-4 rounded-md w-1/2 text-xs sm:text-sm md:text-base transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]">
@@ -30,4 +57,4 @@
             </button>
         </div>
     </form>
-</div> 
+</div>
