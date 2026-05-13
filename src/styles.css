@@ -29,6 +29,40 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 1000;
+  transform: translateY(-150%);
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgb(15 23 42 / 20%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Invertir colores de fondo y texto en modo oscuro */
 .dark body {
   background-color: var(--bg-primary);
