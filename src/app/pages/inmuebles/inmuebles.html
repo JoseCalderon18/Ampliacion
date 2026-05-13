@@ -13,6 +13,8 @@
         <button 
           type="button" 
           (click)="openMobileFilters()"
+          [attr.aria-expanded]="mobileFiltersOpen()"
+          aria-controls="panel-filtros-movil"
           class="lg:hidden -m-2 ml-4 p-2 text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400"
           aria-label="Abrir filtros móviles">
           <span class="sr-only">Filtros</span>
@@ -43,6 +45,7 @@
               <button 
                 type="button"
                 (click)="toggleTipoSection()"
+                [attr.aria-expanded]="tipoSectionOpen()"
                 class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
                 <span class="font-medium text-slate-900 dark:text-white">Tipo de Inmueble</span>
                 <span class="ml-6 flex items-center">
@@ -88,6 +91,7 @@
               <button 
                 type="button"
                 (click)="toggleProvinciaSection()"
+                [attr.aria-expanded]="provinciaSectionOpen()"
                 class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
                 <span class="font-medium text-slate-900 dark:text-white">Provincia</span>
                 <span class="ml-6 flex items-center">
@@ -133,6 +137,7 @@
               <button 
                 type="button"
                 (click)="toggleCiudadSection()"
+                [attr.aria-expanded]="ciudadSectionOpen()"
                 class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
                 <span class="font-medium text-slate-900 dark:text-white">Ciudad</span>
                 <span class="ml-6 flex items-center">
@@ -208,6 +213,7 @@
               <button 
                 type="button"
                 (click)="toggleHabitacionesSection()"
+                [attr.aria-expanded]="habitacionesSectionOpen()"
                 class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
                 <span class="font-medium text-slate-900 dark:text-white">Habitaciones</span>
                 <span class="ml-6 flex items-center">
@@ -253,6 +259,7 @@
               <button 
                 type="button"
                 (click)="toggleBanosSection()"
+                [attr.aria-expanded]="banosSectionOpen()"
                 class="flex w-full items-center justify-between bg-white dark:bg-transparent py-3 text-sm text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
                 <span class="font-medium text-slate-900 dark:text-white">Baños</span>
                 <span class="ml-6 flex items-center">
@@ -296,7 +303,7 @@
         <!-- Grid de inmuebles -->
         <div class="lg:col-span-3">
           <!-- Resultados -->
-          <div class="mb-6 text-sm text-slate-800 dark:text-slate-400">
+          <div class="mb-6 text-sm text-slate-800 dark:text-slate-400" role="status" aria-live="polite">
             Mostrando {{ paginatedCasas().length }} de {{ filteredCasas().length }} inmuebles
           </div>
 
@@ -366,7 +373,7 @@
 
   <!-- Modal de filtros móvil -->
   @if (mobileFiltersOpen()) {
-    <div class="fixed inset-0 z-50 lg:hidden">
+    <div class="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-labelledby="titulo-filtros-movil">
       <!-- Backdrop -->
       <div 
         (click)="closeMobileFilters()"
@@ -374,11 +381,11 @@
       
       <!-- Panel -->
       <div class="fixed inset-y-0 right-0 flex max-w-full pl-10">
-        <div class="w-screen max-w-xs">
+        <div id="panel-filtros-movil" class="w-screen max-w-xs">
           <div class="flex h-full flex-col overflow-y-auto bg-white dark:bg-slate-800 py-4 shadow-xl">
             <!-- Header -->
             <div class="flex items-center justify-between px-4">
-              <h2 class="text-lg font-medium text-slate-900 dark:text-white">Filtros</h2>
+              <h2 id="titulo-filtros-movil" class="text-lg font-medium text-slate-900 dark:text-white">Filtros</h2>
               <button 
                 type="button"
                 (click)="closeMobileFilters()"

@@ -16,6 +16,7 @@
     @if (hasMultipleImages()) {
       <button 
         (click)="prevImage(); $event.stopPropagation()"
+        [attr.aria-label]="'Ver imagen anterior de ' + casa.titulo"
         class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
         <!-- Icono flecha izquierda -->
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -24,6 +25,7 @@
       </button>
       <button 
         (click)="nextImage(); $event.stopPropagation()"
+        [attr.aria-label]="'Ver imagen siguiente de ' + casa.titulo"
         class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
         <!-- Icono flecha derecha -->
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,6 +114,7 @@
     <a 
       [routerLink]="['/inmuebles', casa.id]"
       (click)="onSaberMas()"
+      [attr.aria-label]="'Ver detalles de ' + casa.titulo"
       class="mt-auto w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg text-center transition-all duration-200 transform hover:scale-105 active:scale-95">
       Saber más
     </a>

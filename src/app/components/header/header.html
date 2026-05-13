@@ -13,7 +13,7 @@
     </div>
 
     <!-- Navegación - Links en el centro (desktop) -->
-    <nav class="hidden lg:flex items-center gap-6 flex-1 justify-center">
+    <nav class="hidden lg:flex items-center gap-6 flex-1 justify-center" aria-label="Menú principal">
       <a 
         routerLink="/inmuebles" 
         routerLinkActive="active" 
@@ -91,8 +91,11 @@
       <!-- Botón menú móvil -->
       <button
         (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-controls="menu-movil"
+        aria-label="Abrir o cerrar menú principal"
         class="lg:hidden w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all duration-200 flex items-center justify-center">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
         </svg>
       </button>
@@ -101,7 +104,7 @@
 
   <!-- Menú móvil desplegable -->
   @if (isMenuOpen()) {
-    <nav class="lg:hidden border-t border-white/20 py-4 mt-3 space-y-1 mobile-nav-menu">
+    <nav id="menu-movil" class="lg:hidden border-t border-white/20 py-4 mt-3 space-y-1 mobile-nav-menu" aria-label="Menú principal móvil">
       <a
         routerLink="/inmuebles"
         (click)="closeMenu()"
