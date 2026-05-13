@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // FormsModule: Proporciona [(ngModel)] para two-way binding en formularios
 
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 // Router: Servicio para navegación programática entre rutas
 
 import { ThemeService } from '../../services/theme.service';
@@ -38,7 +38,7 @@ import AOS from 'aos';
   // standalone: true => Componente self-contained (no necesita NgModule)
   // Forma moderna de Angular 17+ (sin dependencias de módulos)
   
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   // imports: Array de módulos necesarios (directivas + formularios)
   
   templateUrl: './login-registro.html',

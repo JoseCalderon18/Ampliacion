@@ -4,14 +4,21 @@
     <!-- pequeña decoracion -->
     <div [ngClass]="isDarkMode() ? 'bg-green-600' : 'bg-blue-500'" class="mx-auto w-16 h-1 rounded mt-2 mb-1" aria-hidden="true"></div>
         <p [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-gray-500'" class="text-xs sm:text-sm text-center mb-4">Respondemos en menos de 24 horas</p>
-        <form class="space-y-1 text-center flex-grow flex flex-col" id="formularioContacto" (ngSubmit)="enviarEmail()">
+        <form class="space-y-2 text-left flex-grow flex flex-col" id="formularioContacto" (ngSubmit)="enviarEmail()" aria-describedby="ayuda-contacto">
+            <p id="ayuda-contacto" [ngClass]="isDarkMode() ? 'text-slate-300' : 'text-gray-600'" class="sr-only">Todos los campos del formulario de contacto son obligatorios.</p>
+            <label for="nombre" [ngClass]="isDarkMode() ? 'text-slate-200' : 'text-slate-700'" class="text-xs sm:text-sm font-semibold">Nombre</label>
             <input [(ngModel)]="nombre" type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre"
+                required autocomplete="name" aria-required="true"
                 [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
                 class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+            <label for="email" [ngClass]="isDarkMode() ? 'text-slate-200' : 'text-slate-700'" class="text-xs sm:text-sm font-semibold">Email</label>
             <input [(ngModel)]="email" type="email" id="email" name="email" placeholder="Introduce tu email"
+                required autocomplete="email" aria-required="true"
                 [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
                 class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+            <label for="asunto" [ngClass]="isDarkMode() ? 'text-slate-200' : 'text-slate-700'" class="text-xs sm:text-sm font-semibold">Asunto</label>
             <select [(ngModel)]="asunto" name="asunto" id="asunto"
+                required aria-required="true"
                 [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white' : 'bg-white border-gray-300 text-slate-900'"
                 class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
                 <option value="" disabled selected class="text-xs sm:text-sm">Selecciona un asunto</option>
@@ -19,7 +26,9 @@
                 <option value="2" class="text-xs sm:text-sm">Consulta sobre algún Inmueble</option>
                 <option value="3" class="text-xs sm:text-sm">Otro</option>
             </select>
-            <textarea [(ngModel)] = "mensaje" name="mensaje" id="mensaje" rows="6" sm:rows="7" md:rows="8" placeholder="Introduce tu mensaje"
+            <label for="mensaje" [ngClass]="isDarkMode() ? 'text-slate-200' : 'text-slate-700'" class="text-xs sm:text-sm font-semibold">Mensaje</label>
+            <textarea [(ngModel)] = "mensaje" name="mensaje" id="mensaje" rows="6" placeholder="Introduce tu mensaje"
+                required aria-required="true"
                 [ngClass]="isDarkMode() ? 'bg-slate-600 border-slate-500 text-white placeholder-slate-400' : 'bg-white border-gray-300 text-slate-900'"
                 class="w-full p-2 sm:p-3 text-xs sm:text-sm border rounded-md flex-grow min-h-[120px] focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none resize-none"></textarea>
             <div class="flex justify-center">
